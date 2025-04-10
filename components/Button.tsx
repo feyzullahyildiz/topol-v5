@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './button.css';
-
 export interface ButtonProps {
   /** Is this the principal call to action on the page? */
   primary?: boolean;
@@ -23,19 +21,26 @@ export const Button = ({
   label,
   ...props
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const baseClasses = 'rounded font-bold';
+  const sizeClasses = {
+    small: 'py-1.5 px-4 text-xs',
+    medium: 'py-2 px-5 text-sm',
+    large: 'py-2.5 px-6 text-base',
+  };
+  const colorClasses = primary
+    ? 'bg-blue-600 text-white hover:bg-blue-700'
+    : 'bg-gray-200 text-gray-800 hover:bg-gray-300';
+
+  const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${colorClasses}`;
+
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
+      className={buttonClasses}
+      style={backgroundColor ? { backgroundColor } : undefined}
       {...props}
     >
       {label}
-      <style jsx>{`
-        button {
-          background-color: ${backgroundColor};
-        }
-      `}</style>
     </button>
   );
 };
