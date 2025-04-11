@@ -49,7 +49,7 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
   return (
     <>
       {/* Bu son relative ilginç oldu. En parent'ı aydınlatıyordu.  */}
-      <div className="relative">
+      <div className="relative w-full">
         <div ref={setDroppableRef}>
           <div ref={setDraggableRef} style={style} {...listeners} {...attributes}>
             <SingleNodeRenderer
@@ -59,7 +59,7 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
             />
           </div>
           {isOver && (
-            <div className="pointer-events-none absolute inset-0 top-0 right-0 bottom-0 left-0 z-10 bg-red-500/20 p-4" />
+            <div className="pointer-events-none absolute inset-0 top-0 right-0 bottom-0 left-0 z-10 border-2 border-dashed border-red-500" />
           )}
         </div>
       </div>

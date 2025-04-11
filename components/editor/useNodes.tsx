@@ -16,7 +16,6 @@ export const useNodes = () => {
       return;
     }
     if (overId && activeId) {
-      console.log('nodes HAYDA');
       setNodes(nodes => {
         const activeIndex = nodes.findIndex(node => node.id === activeId);
         const overIndex = nodes.findIndex(node => node.id === overId);
@@ -24,10 +23,6 @@ export const useNodes = () => {
       });
       return;
     }
-    // console.log('event', event);
-    // if (active.id !== over.id) {
-    //   setNodes(nodes => move(nodes, active.id, over.id));
-    // }
   };
   return { nodes, setNodes, onDragEnd };
 };

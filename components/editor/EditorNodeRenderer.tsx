@@ -21,8 +21,10 @@ export const EditorNodeRenderer = ({ initialNodes }: Props) => {
     .filter(Boolean);
 
   return (
-    <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
-      {comps}
-    </DndContext>
+    <div className="flex max-w-[800px] flex-col">
+      <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
+        {comps}
+      </DndContext>
+    </div>
   );
 };

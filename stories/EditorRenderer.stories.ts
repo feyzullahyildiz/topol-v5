@@ -7,7 +7,7 @@ const meta = {
   title: 'EditorRenderer/Basic',
   component: EditorNodeRenderer,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof EditorNodeRenderer>;
@@ -111,6 +111,43 @@ export const LayoutOneOne_with_GrandChild: Story = {
         id: 'grandchild-b',
         props: { text: 'grandchild-b' },
         atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+    ],
+  },
+};
+
+export const LayoutOneOne_with_EmptyArea: Story = {
+  args: {
+    initialNodes: [
+      {
+        id: 'top',
+        props: { text: 'TOP' },
+        atRoot: true,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
+        id: 'layout-x',
+        props: {
+          children: ['left', null],
+        },
+        atRoot: true,
+        type: EnumNodeType.LayoutOneOne,
+        mode: 'Layout',
+      },
+      {
+        id: 'left',
+        props: { text: 'Left' },
+        atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
+        id: 'bottom',
+        props: { text: 'BOTTOM' },
+        atRoot: true,
         type: EnumNodeType.WidgetText,
         mode: 'Widget',
       },
