@@ -1,4 +1,4 @@
-import { NodeType } from '@/lib/NodeType';
+import { EnumNodeType } from '@/lib/EnumNodeType';
 import { RootNode } from '@/lib/RootNode';
 import { WidgetTextComponent } from '../widget/WidgetTextComponent';
 import { LayoutOneOneComponent } from '../layout/LayoutOneOneComoponent';
@@ -15,9 +15,9 @@ export const SingleNodeRenderer = ({
   subRenderer = getSingleNodeChildNodeFromId,
 }: SingleNodeRendererProps) => {
   switch (node.type) {
-    case NodeType.WidgetText:
+    case EnumNodeType.WidgetText:
       return <WidgetTextComponent key={node.id} {...node.props} />;
-    case NodeType.LayoutOneOne:
+    case EnumNodeType.LayoutOneOne:
       return (
         <LayoutOneOneComponent
           key={node.id}

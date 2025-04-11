@@ -4,12 +4,13 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 
 import { CSS } from '@dnd-kit/utilities';
 import { getSingleEditorChildNodeFromId } from '../hoc/getSubRenderer';
-
 interface SingleEditorRendererProps {
   node: RootNode;
   childNodeList: RootNode[];
 }
 export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRendererProps) => {
+  // Configure draggable
+  //   console.log('node.type', node.type);
   const {
     setNodeRef: setDraggableRef,
     listeners,
@@ -18,14 +19,22 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
     isDragging,
   } = useDraggable({
     id: node.id,
+    data: { node },
   });
-  const { setNodeRef: setDroppableRef, isOver } = useDroppable({
-    id: node.id + 'drop',
+
+  const {
+    setNodeRef: setDroppableRef,
+    isOver,
+    // over,
+  } = useDroppable({
+    id: node.id,
+    data: { node },
   });
+
   const style = {
     transform: CSS.Translate.toString(transform),
     opacity: isDragging ? 0.5 : 1,
-    border: isOver ? '1px solid #000' : '1px solid transparent',
+    zIndex: isDragging ? 10 : undefined,
   };
 
   //   const onMouseEnter = () => {
@@ -34,15 +43,24 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
   //   const onMouseLeave = () => {
   //     console.log('onMouseLeave');
   //   };
+  //   if (isDragging) {
+  //     console.log('isDragging', node.id, node.type);
+  //   }
   return (
     <>
-      <div ref={setDraggableRef} style={style} {...listeners} {...attributes}>
+      {/* Bu son relative ilginç oldu. En parent'ı aydınlatıyordu.  */}
+      <div className="relative">
         <div ref={setDroppableRef}>
-          <SingleNodeRenderer
-            node={node}
-            childNodeList={childNodeList}
-            subRenderer={getSingleEditorChildNodeFromId}
-          />
+          <div ref={setDraggableRef} style={style} {...listeners} {...attributes}>
+            <SingleNodeRenderer
+              node={node}
+              childNodeList={childNodeList}
+              subRenderer={getSingleEditorChildNodeFromId}
+            />
+          </div>
+          {isOver && (
+            <div className="pointer-events-none absolute inset-0 top-0 right-0 bottom-0 left-0 z-10 bg-red-500/20 p-4" />
+          )}
         </div>
       </div>
     </>

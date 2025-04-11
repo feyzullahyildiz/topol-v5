@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { NodeRenderer } from '@/components/render/NodeRenderer';
-import { NodeType } from '@/lib/NodeType';
+import { EnumNodeType } from '@/lib/EnumNodeType';
 
 const meta = {
   title: 'NodeRenderer/Basic',
@@ -22,7 +22,8 @@ export const TextOnly: Story = {
         id: '1',
         props: { text: 'Hello, world!' },
         atRoot: true,
-        type: NodeType.WidgetText,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
       },
     ],
   },
@@ -31,18 +32,43 @@ export const TextOnly: Story = {
 export const LayoutOneOne: Story = {
   args: {
     nodes: [
-      { id: 'top', props: { text: 'TOP' }, atRoot: true, type: NodeType.WidgetText },
+      {
+        id: 'top',
+        props: { text: 'TOP' },
+        atRoot: true,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
       {
         id: 'layout-x',
         props: {
           children: ['left', 'right'],
         },
         atRoot: true,
-        type: NodeType.LayoutOneOne,
+        type: EnumNodeType.LayoutOneOne,
+        mode: 'Layout',
       },
-      { id: 'left', props: { text: 'Left' }, atRoot: false, type: NodeType.WidgetText },
-      { id: 'right', props: { text: 'Right' }, atRoot: false, type: NodeType.WidgetText },
-      { id: 'bottom', props: { text: 'BOTTOM' }, atRoot: true, type: NodeType.WidgetText },
+      {
+        id: 'left',
+        props: { text: 'Left' },
+        atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
+        id: 'right',
+        props: { text: 'Right' },
+        atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
+        id: 'bottom',
+        props: { text: 'BOTTOM' },
+        atRoot: true,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
     ],
   },
 };
@@ -55,7 +81,8 @@ export const LayoutOneOne_with_GrandChild: Story = {
           children: ['left', 'another-layout'],
         },
         atRoot: true,
-        type: NodeType.LayoutOneOne,
+        type: EnumNodeType.LayoutOneOne,
+        mode: 'Layout',
       },
       {
         id: 'another-layout',
@@ -63,20 +90,29 @@ export const LayoutOneOne_with_GrandChild: Story = {
           children: ['grandchild-a', 'grandchild-b'],
         },
         atRoot: false,
-        type: NodeType.LayoutOneOne,
+        type: EnumNodeType.LayoutOneOne,
+        mode: 'Layout',
       },
-      { id: 'left', props: { text: 'Left' }, atRoot: false, type: NodeType.WidgetText },
+      {
+        id: 'left',
+        props: { text: 'Left' },
+        atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
       {
         id: 'grandchild-a',
         props: { text: 'grandchild-a' },
         atRoot: false,
-        type: NodeType.WidgetText,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
       },
       {
         id: 'grandchild-b',
         props: { text: 'grandchild-b' },
         atRoot: false,
-        type: NodeType.WidgetText,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
       },
     ],
   },

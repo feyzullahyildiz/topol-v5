@@ -12,7 +12,7 @@ interface Props extends LayoutOneOneComponentProps {
 }
 export const LayoutOneOneComponent = ({ children, childNodeList, subRenderer }: Props) => {
   return (
-    <Row className="text-black  flex">
+    <Row className="flex text-black">
       <Column className="flex-1">{subRenderer(children[0], childNodeList)}</Column>
       <Column className="flex-1">{subRenderer(children[1], childNodeList)}</Column>
     </Row>

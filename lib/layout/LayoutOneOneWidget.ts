@@ -1,7 +1,7 @@
 import { LayoutOneOneComponentProps } from '@/components/layout/LayoutOneOneComoponent';
-import { NodeType } from '../NodeType';
-import { BaseNode } from '../BaseNode';
+import { EnumNodeType } from '../EnumNodeType';
+import { BaseLayoutNode } from '../BaseNode';
 
-export interface LayoutOneOne extends BaseNode<LayoutOneOneComponentProps> {
-  type: NodeType.LayoutOneOne;
+export interface LayoutOneOne extends BaseLayoutNode<LayoutOneOneComponentProps> {
+  type: EnumNodeType.LayoutOneOne;
 }
