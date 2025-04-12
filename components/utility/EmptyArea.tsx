@@ -6,8 +6,9 @@ export const EmptyArea = () => {
     <div
       className={cn(
         'group',
-        'flex min-h-[60px] min-w-[60px] items-center justify-center',
-        'border-2 border-sky-500/30 bg-sky-200',
+        'box-border',
+        'flex min-h-[70px] min-w-[60px] items-center justify-center',
+        'border-2 border-sky-500 bg-sky-300',
         'hover:border-sky-500 hover:bg-sky-300',
         'transition-all duration-300',
         'cursor-pointer'
@@ -15,7 +16,8 @@ export const EmptyArea = () => {
     >
       <div
         className={cn(
-          'flex size-6 items-center justify-center rounded-full border-2 border-sky-600 text-2xl',
+          'flex size-6 items-center justify-center rounded-full text-2xl',
+          'border-2 border-sky-600 text-sky-600',
           'group-hover:border-white group-hover:bg-sky-500 group-hover:text-white',
           'transition-all duration-300'
         )}

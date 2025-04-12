@@ -7,8 +7,15 @@ import { getSingleEditorChildNodeFromId } from '../hoc/getSubRenderer';
 interface SingleEditorRendererProps {
   node: RootNode;
   childNodeList: RootNode[];
+  index?: number | undefined;
+  parentId?: string | undefined;
 }
-export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRendererProps) => {
+export const SingleEditorRenderer = ({
+  node,
+  childNodeList,
+  index,
+  parentId,
+}: SingleEditorRendererProps) => {
   // Configure draggable
   //   console.log('node.type', node.type);
   const {
@@ -19,7 +26,7 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
     isDragging,
   } = useDraggable({
     id: node.id,
-    data: { node },
+    data: { node, index, parentId },
   });
 
   const {
@@ -28,13 +35,14 @@ export const SingleEditorRenderer = ({ node, childNodeList }: SingleEditorRender
     // over,
   } = useDroppable({
     id: node.id,
-    data: { node },
+    data: { node, index },
   });
 
   const style = {
     transform: CSS.Translate.toString(transform),
     opacity: isDragging ? 0.5 : 1,
     zIndex: isDragging ? 10 : undefined,
+    // border: isDragging ? '2px dashed red' : undefined,
   };
 
   //   const onMouseEnter = () => {

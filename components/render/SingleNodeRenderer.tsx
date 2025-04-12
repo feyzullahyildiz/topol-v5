@@ -21,6 +21,7 @@ export const SingleNodeRenderer = ({
       return (
         <LayoutOneOneComponent
           key={node.id}
+          id={node.id}
           {...node.props}
           childNodeList={childNodeList}
           subRenderer={subRenderer}

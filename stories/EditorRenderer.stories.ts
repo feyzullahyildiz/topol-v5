@@ -138,8 +138,24 @@ export const LayoutOneOne_with_EmptyArea: Story = {
         mode: 'Layout',
       },
       {
+        id: 'layout-y',
+        props: {
+          children: ['foo', null],
+        },
+        atRoot: true,
+        type: EnumNodeType.LayoutOneOne,
+        mode: 'Layout',
+      },
+      {
         id: 'left',
         props: { text: 'Left' },
+        atRoot: false,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
+        id: 'foo',
+        props: { text: 'foo' },
         atRoot: false,
         type: EnumNodeType.WidgetText,
         mode: 'Widget',

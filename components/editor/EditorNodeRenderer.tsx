@@ -9,7 +9,6 @@ interface Props {
 }
 export const EditorNodeRenderer = ({ initialNodes }: Props) => {
   const { nodes, setNodes, onDragEnd } = useNodes();
-  // console.log('nodes', nodes);
   useEffect(() => {
     setNodes(initialNodes || []);
   }, [initialNodes, setNodes]);

@@ -7,14 +7,15 @@ export interface LayoutOneOneComponentProps {
   children: [ChildWidgetRef, ChildWidgetRef];
 }
 interface Props extends LayoutOneOneComponentProps {
+  id: string;
   childNodeList: RootNode[];
   subRenderer: SubRenderer;
 }
-export const LayoutOneOneComponent = ({ children, childNodeList, subRenderer }: Props) => {
+export const LayoutOneOneComponent = ({ id, children, childNodeList, subRenderer }: Props) => {
   return (
-    <Row className="text-black">
-      <Column>{subRenderer(children[0], childNodeList)}</Column>
-      <Column>{subRenderer(children[1], childNodeList)}</Column>
+    <Row>
+      <Column>{subRenderer(children[0], childNodeList, id, 0)}</Column>
+      <Column>{subRenderer(children[1], childNodeList, id, 1)}</Column>
     </Row>
   );
 };
