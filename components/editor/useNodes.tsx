@@ -44,7 +44,7 @@ export const useNodes = () => {
     }
   };
   const onMouseEnter = (id: string) => {
-    console.log('onMouseEnter', id);
+    // console.log('onMouseEnter', id);
     setSelectedNode(id);
   };
   const onMouseLeave = (id: string) => {
@@ -53,7 +53,11 @@ export const useNodes = () => {
     // TODO: burayı kaldırdık, belki lazım olabilir.
     // setSelectedNode(undefined);
   };
-  return { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode };
+  const onDelete = (id: string) => {
+    // TODO delete this
+    console.log('onDelete', id);
+  };
+  return { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete };
 };
 
 function extract(event: DragEndEvent): [RootNode, RootNode] {

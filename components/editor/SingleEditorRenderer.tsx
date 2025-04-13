@@ -18,7 +18,7 @@ export const SingleEditorRenderer = ({
   index,
   parentId,
 }: SingleEditorRendererProps) => {
-  const { selectedNode, onMouseEnter, onMouseLeave } = useExtra();
+  const { selectedNode, onMouseEnter, onMouseLeave, onDelete } = useExtra();
   // Configure draggable
   //   console.log('node.type', node.type);
   const {
@@ -96,12 +96,23 @@ export const SingleEditorRenderer = ({
               {...listeners}
               className={cn(
                 'pointer-events-auto',
-                'absolute top-0 left-0 -mx-1 size-4 -translate-x-full bg-red-500',
+                'absolute top-0 left-0 -mx-1 size-6 -translate-x-full bg-green-500',
                 'flex items-center justify-center',
                 'cursor-pointer'
               )}
             >
               +
+            </div>
+            <div
+              onClick={() => onDelete(node.id)}
+              className={cn(
+                'pointer-events-auto',
+                'absolute bottom-0 left-0 -mx-1 size-6 -translate-x-full bg-red-500',
+                'flex items-center justify-center',
+                'cursor-pointer'
+              )}
+            >
+              x
             </div>
           </div>
         )}

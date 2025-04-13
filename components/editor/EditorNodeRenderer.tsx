@@ -10,7 +10,8 @@ interface Props {
   children?: (nodes: RootNode[]) => React.ReactNode;
 }
 export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
-  const { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode } = useNodes();
+  const { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete } =
+    useNodes();
   useEffect(() => {
     setNodes(initialNodes || []);
   }, [initialNodes, setNodes]);
@@ -29,6 +30,7 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
             onMouseEnter,
             onMouseLeave,
             selectedNode,
+            onDelete,
           }}
         >
           <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
