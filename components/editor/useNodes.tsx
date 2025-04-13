@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithImmer } from 'jotai-immer';
 import { RootNode } from '@/lib/RootNode';
 import { DragEndEvent } from '@dnd-kit/core';
@@ -11,11 +11,13 @@ type EventNodePayload = {
   index?: number | undefined;
 };
 const nodesAtom = atomWithImmer<RootNode[]>([]);
+const selectedNodeAtome = atom<string | undefined>(undefined);
 
 type SetNodeFn = (updater: RootNode[] | ((draft: RootNode[]) => void)) => void;
 
 export const useNodes = () => {
   const [nodes, setNodes] = useAtom(nodesAtom);
+  const [selectedNode, setSelectedNode] = useAtom(selectedNodeAtome);
   const onDragEnd = (event: DragEndEvent) => {
     const isEmptyArea = event.over?.data.current?.isEmptyArea;
     if (isEmptyArea) {
@@ -41,7 +43,17 @@ export const useNodes = () => {
       return;
     }
   };
-  return { nodes, setNodes, onDragEnd };
+  const onMouseEnter = (id: string) => {
+    console.log('onMouseEnter', id);
+    setSelectedNode(id);
+  };
+  const onMouseLeave = (id: string) => {
+    // TODO find parent id
+    console.log('onMouseLeave', id);
+    // TODO: burayı kaldırdık, belki lazım olabilir.
+    // setSelectedNode(undefined);
+  };
+  return { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode };
 };
 
 function extract(event: DragEndEvent): [RootNode, RootNode] {

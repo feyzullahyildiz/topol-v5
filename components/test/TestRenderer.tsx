@@ -9,13 +9,13 @@ interface Props {
 }
 export const TestRenderer = ({ initialNodes }: Props) => {
   return (
-    <div className="flex flex-col gap-4">
-      <h2>Drag and Drop Enabled</h2>
+    <div className="flex flex-col gap-4 p-16">
+      <h2 className="text-2xl font-bold">Drag and Drop Enabled</h2>
       <EditorNodeRenderer initialNodes={initialNodes}>
         {nextNodes => (
           <>
             <hr />
-            <h2>Drag and Drop Disabled</h2>
+            <h2 className="text-2xl font-bold">Drag and Drop Disabled</h2>
             <NodeRenderer nodes={nextNodes} />
           </>
         )}

@@ -3,13 +3,14 @@ import React, { useEffect } from 'react';
 import { DndContext, pointerWithin } from '@dnd-kit/core';
 import { SingleEditorRenderer } from './SingleEditorRenderer';
 import { useNodes } from './useNodes';
+import { EditorExtraContext } from './extra/EditorExtraContext';
 
 interface Props {
   initialNodes?: RootNode[];
   children?: (nodes: RootNode[]) => React.ReactNode;
 }
 export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
-  const { nodes, setNodes, onDragEnd } = useNodes();
+  const { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode } = useNodes();
   useEffect(() => {
     setNodes(initialNodes || []);
   }, [initialNodes, setNodes]);
@@ -23,9 +24,17 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
   return (
     <>
       <div className="flex max-w-[800px] flex-col">
-        <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
-          {comps}
-        </DndContext>
+        <EditorExtraContext
+          value={{
+            onMouseEnter,
+            onMouseLeave,
+            selectedNode,
+          }}
+        >
+          <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
+            {comps}
+          </DndContext>
+        </EditorExtraContext>
       </div>
       {children?.(nodes)}
     </>

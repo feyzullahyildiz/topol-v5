@@ -4,6 +4,8 @@ import { useDraggable, useDroppable } from '@dnd-kit/core';
 
 import { CSS } from '@dnd-kit/utilities';
 import { getSingleEditorChildNodeFromId } from '../hoc/getSubRenderer';
+import { useExtra } from './extra/useExtra';
+import { cn } from '@/util/cn';
 interface SingleEditorRendererProps {
   node: RootNode;
   childNodeList: RootNode[];
@@ -16,6 +18,7 @@ export const SingleEditorRenderer = ({
   index,
   parentId,
 }: SingleEditorRendererProps) => {
+  const { selectedNode, onMouseEnter, onMouseLeave } = useExtra();
   // Configure draggable
   //   console.log('node.type', node.type);
   const {
@@ -29,6 +32,7 @@ export const SingleEditorRenderer = ({
     data: { node, index, parentId },
   });
 
+  const isLayout = node.mode === 'Layout';
   const {
     setNodeRef: setDroppableRef,
     isOver,
@@ -54,12 +58,22 @@ export const SingleEditorRenderer = ({
   //   if (isDragging) {
   //     console.log('isDragging', node.id, node.type);
   //   }
+  const onMouseEnterHandler = () => {
+    onMouseEnter(node.id);
+  };
+  const onMouseLeaveHandler = () => {
+    onMouseLeave(node.id);
+  };
   return (
     <>
       {/* Bu son relative ilginç oldu. En parent'ı aydınlatıyordu.  */}
-      <div className="relative w-full">
+      <div
+        className="relative w-full"
+        onMouseEnter={onMouseEnterHandler}
+        onMouseLeave={onMouseLeaveHandler}
+      >
         <div ref={setDroppableRef}>
-          <div ref={setDraggableRef} style={style} {...listeners} {...attributes}>
+          <div ref={setDraggableRef} style={style} {...attributes}>
             <SingleNodeRenderer
               node={node}
               childNodeList={childNodeList}
@@ -70,6 +84,27 @@ export const SingleEditorRenderer = ({
             <div className="pointer-events-none absolute inset-0 top-0 right-0 bottom-0 left-0 z-10 border-2 border-dashed border-red-500" />
           )}
         </div>
+        {selectedNode === node.id && !isDragging && (
+          <div
+            className={cn(
+              'pointer-events-none absolute inset-0 -top-2 -right-2 -bottom-2 -left-2 z-10',
+              'border-2 border-solid',
+              isLayout ? 'border-violet-600' : 'border-green-500'
+            )}
+          >
+            <div
+              {...listeners}
+              className={cn(
+                'pointer-events-auto',
+                'absolute top-0 left-0 -mx-1 size-4 -translate-x-full bg-red-500',
+                'flex items-center justify-center',
+                'cursor-pointer'
+              )}
+            >
+              +
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
