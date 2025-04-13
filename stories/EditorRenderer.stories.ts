@@ -2,10 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { EnumNodeType } from '@/lib/EnumNodeType';
 import { EditorNodeRenderer } from '@/components/editor/EditorNodeRenderer';
+import { TestRenderer } from '@/components/test/TestRenderer';
 
 const meta = {
   title: 'EditorRenderer/Basic',
-  component: EditorNodeRenderer,
+  component: TestRenderer,
   parameters: {
     layout: 'fullscreen',
   },

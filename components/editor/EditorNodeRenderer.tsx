@@ -6,8 +6,9 @@ import { useNodes } from './useNodes';
 
 interface Props {
   initialNodes?: RootNode[];
+  children?: (nodes: RootNode[]) => React.ReactNode;
 }
-export const EditorNodeRenderer = ({ initialNodes }: Props) => {
+export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
   const { nodes, setNodes, onDragEnd } = useNodes();
   useEffect(() => {
     setNodes(initialNodes || []);
@@ -20,10 +21,13 @@ export const EditorNodeRenderer = ({ initialNodes }: Props) => {
     .filter(Boolean);
 
   return (
-    <div className="flex max-w-[800px] flex-col">
-      <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
-        {comps}
-      </DndContext>
-    </div>
+    <>
+      <div className="flex max-w-[800px] flex-col">
+        <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
+          {comps}
+        </DndContext>
+      </div>
+      {children?.(nodes)}
+    </>
   );
 };

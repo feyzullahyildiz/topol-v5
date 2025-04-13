@@ -10,5 +10,5 @@ export const NodeRenderer = ({ nodes }: NodeRendererProps) => {
   const comps = rootNodes
     .map(node => <SingleNodeRenderer key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
-  return <>{comps}</>;
+  return <div className="flex flex-col">{comps}</div>;
 };
