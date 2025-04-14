@@ -2,7 +2,8 @@ import { EnumNodeType } from '@/lib/EnumNodeType';
 import { RootNode } from '@/lib/RootNode';
 import { WidgetTextComponent } from '../widget/WidgetTextComponent';
 import { LayoutOneOneComponent } from '../layout/LayoutOneOneComponent';
-import { getSingleNodeChildNodeFromId, SubRenderer } from '../hoc/getSubRenderer';
+import { SubRenderer } from '@/lib/SubRenderer';
+import { getSingleNodeChildNodeFromId } from '../hoc/getSingleNodeChildNodeFromId';
 
 interface SingleNodeRendererProps {
   node: RootNode;

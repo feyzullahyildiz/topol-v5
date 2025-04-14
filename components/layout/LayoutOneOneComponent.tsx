@@ -1,4 +1,3 @@
-'use server';
 import { ChildWidgetRef } from '@/lib/layout/util';
 import { RootNode } from '@/lib/RootNode';
 import { SubRenderer } from '../hoc/getSubRenderer';

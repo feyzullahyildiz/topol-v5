@@ -1,22 +1,8 @@
 import { ChildWidgetRef } from '@/lib/layout/util';
 import { RootNode } from '@/lib/RootNode';
-import { SingleNodeRenderer } from '../render/SingleNodeRenderer';
 import { SingleEditorRenderer } from '../editor/SingleEditorRenderer';
 import { EmptyArea } from '../utility/EmptyArea';
 import { EmptyAreaRenderer } from '../editor/EmptyAreaRenderer';
-export const getSingleNodeChildNodeFromId: SubRenderer = (id, childNodeList) => {
-  if (id === null) {
-    return null;
-    return <div className="size-8 bg-red-500" />;
-  }
-  const node = childNodeList.find(node => node.id === id) || null;
-
-  if (!node) {
-    return <div />;
-    return null;
-  }
-  return <SingleNodeRenderer node={node} childNodeList={childNodeList} />;
-};
 export const getSingleEditorChildNodeFromId: SubRenderer = (id, childNodeList, parentId, index) => {
   if (id === null) {
     if (index === undefined) {

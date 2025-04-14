@@ -1,5 +1,3 @@
-'use server';
-
 export interface WidgetTextComponentProps {
   text: string;
 }

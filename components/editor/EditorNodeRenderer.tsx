@@ -9,8 +9,9 @@ import { SortableContext } from '@dnd-kit/sortable';
 interface Props {
   initialNodes?: RootNode[];
   children?: (nodes: RootNode[]) => React.ReactNode;
+  onNodesChange?: (nodes: RootNode[]) => void;
 }
-export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
+export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Props) => {
   const { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete } =
     useNodes();
   useEffect(() => {
@@ -24,6 +25,9 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
     .filter(Boolean);
 
   const rootNodeIds = rootNodes.map(node => node.id);
+  useEffect(() => {
+    onNodesChange?.(nodes);
+  }, [nodes, onNodesChange]);
   return (
     <>
       <div className="flex max-w-[800px] flex-col">
