@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { NodeRenderer } from '@/components/render/NodeRenderer';
-import { EnumNodeType } from '@/lib/EnumNodeType';
+import { NodeRendererDefault } from '@/components/render/NodeRendererDefault';
+import { EnumNodeType } from '@/types/EnumNodeType';
 
 const meta = {
   title: 'NodeRenderer/Basic',
-  component: NodeRenderer,
+  component: NodeRendererDefault,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof NodeRenderer>;
+} satisfies Meta<typeof NodeRendererDefault>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -1,15 +1,15 @@
-import { RootNode } from '@/lib/RootNode';
+import { IRootNode } from '@/types/RootNode';
 import React, { useEffect } from 'react';
 import { DndContext, pointerWithin } from '@dnd-kit/core';
-import { SingleEditorRenderer } from './SingleEditorRenderer';
-import { useNodes } from './useNodes';
-import { EditorExtraContext } from './extra/EditorExtraContext';
+import { SingleNodeRendererDnd } from './SingleNodeRendererDnd';
+import { useNodes } from './dnd/useNodes';
 import { SortableContext } from '@dnd-kit/sortable';
+import { EditorExtraContext } from './dnd/EditorExtraContext';
 
 interface Props {
-  initialNodes?: RootNode[];
-  children?: (nodes: RootNode[]) => React.ReactNode;
-  onNodesChange?: (nodes: RootNode[]) => void;
+  initialNodes?: IRootNode[];
+  children?: (nodes: IRootNode[]) => React.ReactNode;
+  onNodesChange?: (nodes: IRootNode[]) => void;
 }
 export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Props) => {
   const { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete } =
@@ -21,7 +21,7 @@ export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Pr
   const rootNodes = nodes.filter(node => node.atRoot);
   const childNodes = nodes.filter(node => !node.atRoot);
   const comps = rootNodes
-    .map(node => <SingleEditorRenderer key={node.id} node={node} childNodeList={childNodes} />)
+    .map(node => <SingleNodeRendererDnd key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
 
   const rootNodeIds = rootNodes.map(node => node.id);

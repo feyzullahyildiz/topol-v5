@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
-import { RootNode } from '@/lib/RootNode';
-import { SingleNodeRenderer } from '../render/SingleNodeRenderer';
+import { IRootNode } from '@/types/RootNode';
+import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
 import { useDroppable } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { getSingleEditorChildNodeFromId } from '../hoc/getSubRenderer';
-import { useExtra } from './extra/useExtra';
+import { getSingleEditorChildNodeFromId } from '../../util/sub-renderer/getSingleEditorChildNodeFromId';
+import { useExtra } from './dnd/useExtra';
 import { cn } from '@/util/cn';
 interface SingleEditorRendererProps {
-  node: RootNode;
-  childNodeList: RootNode[];
+  node: IRootNode;
+  childNodeList: IRootNode[];
   index?: number | undefined;
   parentId?: string | undefined;
 }
-export const SingleEditorRenderer = ({
+export const SingleNodeRendererDnd = ({
   node,
   childNodeList,
   index,
@@ -115,7 +115,7 @@ export const SingleEditorRenderer = ({
 
         <div ref={setDroppableRef}>
           <div ref={setDraggableRef} style={style} {...attributes}>
-            <SingleNodeRenderer
+            <SingleNodeRendererDefault
               node={node}
               childNodeList={childNodeList}
               subRenderer={getSingleEditorChildNodeFromId}

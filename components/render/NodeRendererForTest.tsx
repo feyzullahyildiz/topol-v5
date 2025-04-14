@@ -1,15 +1,15 @@
-import { RootNode } from '@/lib/RootNode';
+import { IRootNode } from '@/types/RootNode';
 import React, { useCallback, useState } from 'react';
-import { EditorNodeRenderer } from '../editor/EditorNodeRenderer';
-import { NodeRenderer } from '../render/NodeRenderer';
+import { EditorNodeRenderer } from './NodeRendererDnD';
+import { NodeRendererDefault } from './NodeRendererDefault';
 
 interface Props {
-  initialNodes?: RootNode[];
-  children?: (nodes: RootNode[]) => React.ReactNode;
+  initialNodes?: IRootNode[];
+  children?: (nodes: IRootNode[]) => React.ReactNode;
 }
-export const TestRenderer = ({ initialNodes }: Props) => {
+export const NodeRendererForTest = ({ initialNodes }: Props) => {
   const [result, setResult] = useState<string>('');
-  const makeRequest = useCallback(async (nodes: RootNode[]) => {
+  const makeRequest = useCallback(async (nodes: IRootNode[]) => {
     const res = await fetch('http://localhost:3000/api/test', {
       method: 'POST',
       body: JSON.stringify(nodes),
@@ -25,7 +25,7 @@ export const TestRenderer = ({ initialNodes }: Props) => {
           <>
             <hr />
             <h2 className="text-2xl font-bold">View Area (Result)</h2>
-            <NodeRenderer nodes={nextNodes} />
+            <NodeRendererDefault nodes={nextNodes} />
           </>
         )}
       </EditorNodeRenderer>

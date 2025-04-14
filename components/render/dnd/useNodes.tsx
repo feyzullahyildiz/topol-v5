@@ -1,23 +1,22 @@
 import { atom, useAtom } from 'jotai';
 import { atomWithImmer } from 'jotai-immer';
-import { RootNode } from '@/lib/RootNode';
+import { IRootNode } from '@/types/RootNode';
 import { DragEndEvent } from '@dnd-kit/core';
-import { BaseLayoutNode } from '@/lib/BaseNode';
-import { ChildWidgetRef } from '@/lib/layout/util';
-
-type AnyLayoutNode = BaseLayoutNode<{
+import { IBaseLayoutNode } from '@/types/node/IBaseNode';
+import { ChildWidgetRef } from '@/types/ChildWidgetRef';
+type AnyLayoutNode = IBaseLayoutNode<{
   children: ChildWidgetRef[];
 }>;
 
 type EventNodePayload = {
-  node: RootNode;
+  node: IRootNode;
   parentId?: string | undefined;
   index?: number | undefined;
 };
-const nodesAtom = atomWithImmer<RootNode[]>([]);
+const nodesAtom = atomWithImmer<IRootNode[]>([]);
 const selectedNodeAtome = atom<string | undefined>(undefined);
 
-type SetNodeFn = (updater: RootNode[] | ((draft: RootNode[]) => void)) => void;
+type SetNodeFn = (updater: IRootNode[] | ((draft: IRootNode[]) => void)) => void;
 
 export const useNodes = () => {
   const [nodes, setNodes] = useAtom(nodesAtom);
@@ -98,7 +97,7 @@ export const useNodes = () => {
   return { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete };
 };
 
-function extract(event: DragEndEvent): [RootNode, RootNode] {
+function extract(event: DragEndEvent): [IRootNode, IRootNode] {
   const { active, over } = event;
   // TODO: .node olmayabilir
   return [active.data.current!.node, over!.data.current!.node];
@@ -153,7 +152,7 @@ function moveToEmptyArea(event: DragEndEvent, setNodes: SetNodeFn) {
 }
 
 function getParent(
-  nodes: RootNode[],
+  nodes: IRootNode[],
   id: string
 ): null | { parent: AnyLayoutNode; indexAtParent: number } {
   const node = nodes.find(n => {

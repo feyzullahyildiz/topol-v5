@@ -1,12 +1,12 @@
 import { useDroppable } from '@dnd-kit/core';
 import React from 'react';
-import { EmptyArea } from '../utility/EmptyArea';
+import { EmptyArea } from './EmptyAreaDefault';
 
 interface Props {
   parentId: string;
   index: number;
 }
-export const EmptyAreaRenderer = ({ parentId, index }: Props) => {
+export const EmptyAreaDnD = ({ parentId, index }: Props) => {
   const { setNodeRef: setDroppableRef, isOver } = useDroppable({
     id: `${parentId}-${index}`,
     data: {

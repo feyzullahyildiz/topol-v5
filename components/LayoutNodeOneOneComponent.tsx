@@ -1,13 +1,10 @@
-import { ChildWidgetRef } from '@/lib/layout/util';
-import { RootNode } from '@/lib/RootNode';
-import { SubRenderer } from '../hoc/getSubRenderer';
-export interface LayoutOneOneComponentProps {
-  children: [ChildWidgetRef, ChildWidgetRef];
-}
-interface Props extends LayoutOneOneComponentProps {
+import { IRootNode } from '@/types/RootNode';
+import { ILayoutOneOneComponentProps } from '@/types/props/layout';
+import { ISubRenderer } from '@/types/ISubRenderer';
+interface Props extends ILayoutOneOneComponentProps {
   id: string;
-  childNodeList: RootNode[];
-  subRenderer: SubRenderer;
+  childNodeList: IRootNode[];
+  subRenderer: ISubRenderer;
 }
 export const LayoutOneOneComponent = ({ id, children, childNodeList, subRenderer }: Props) => {
   return (
