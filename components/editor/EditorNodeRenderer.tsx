@@ -24,7 +24,7 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
 
   return (
     <>
-      <div className="flex max-w-[800px] flex-col">
+      <div className="flex max-w-[800px] flex-col gap-4">
         <EditorExtraContext
           value={{
             onMouseEnter,

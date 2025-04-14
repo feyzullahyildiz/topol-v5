@@ -5,6 +5,10 @@ import { DragEndEvent } from '@dnd-kit/core';
 import { BaseLayoutNode } from '@/lib/BaseNode';
 import { ChildWidgetRef } from '@/lib/layout/util';
 
+type AnyLayoutNode = BaseLayoutNode<{
+  children: ChildWidgetRef[];
+}>;
+
 type EventNodePayload = {
   node: RootNode;
   parentId?: string | undefined;
@@ -34,6 +38,25 @@ export const useNodes = () => {
     if (activeId === overId) {
       return;
     }
+    if (!from.atRoot && !to.atRoot) {
+      setNodes(nodes => {
+        const fromParentObj = getParent(nodes, from.id);
+        const toParentObj = getParent(nodes, to.id);
+        if (!fromParentObj || !toParentObj) {
+          return;
+        }
+        const { parent: fromParent, indexAtParent: fromParentIndex } = fromParentObj;
+        const { parent: toParent, indexAtParent: toParentIndex } = toParentObj;
+
+        // console.log('fromParent', fromParent);
+        // console.log('toParent', toParent);
+
+        fromParent.props.children[fromParentIndex] = to.id;
+        toParent.props.children[toParentIndex] = from.id;
+      });
+
+      return;
+    }
     if (overId && activeId) {
       setNodes(nodes => {
         const activeIndex = nodes.findIndex(node => node.id === from.id);
@@ -49,13 +72,28 @@ export const useNodes = () => {
   };
   const onMouseLeave = (id: string) => {
     // TODO find parent id
-    console.log('onMouseLeave', id);
+    // console.log('onMouseLeave', id);
     // TODO: burayı kaldırdık, belki lazım olabilir.
     // setSelectedNode(undefined);
+    const node = nodes.find(node => node.id === id);
+    if (node?.mode === 'Layout') {
+      setSelectedNode(undefined);
+      return;
+    }
+
+    const parent = nodes.find(n => {
+      if (n.mode === 'Widget') {
+        return false;
+      }
+      return n.props.children.includes(id);
+    });
+    if (parent) {
+      setSelectedNode(parent.id);
+    }
   };
-  const onDelete = (id: string) => {
+  const onDelete = () => {
     // TODO delete this
-    console.log('onDelete', id);
+    // console.log('onDelete', id);
   };
   return { nodes, setNodes, onDragEnd, onMouseEnter, onMouseLeave, selectedNode, onDelete };
 };
@@ -87,12 +125,8 @@ function moveToEmptyArea(event: DragEndEvent, setNodes: SetNodeFn) {
     setNodes(prev => {
       const parentToLayoutIndex = prev.findIndex(n => n.id === to.parentId);
       const parentFromLayoutIndex = prev.findIndex(n => n.id === from.parentId);
-      const toLayout = prev[parentToLayoutIndex] as BaseLayoutNode<{
-        children: ChildWidgetRef[];
-      }>;
-      const fromLayout = prev[parentFromLayoutIndex] as BaseLayoutNode<{
-        children: ChildWidgetRef[];
-      }>;
+      const toLayout = prev[parentToLayoutIndex] as AnyLayoutNode;
+      const fromLayout = prev[parentFromLayoutIndex] as AnyLayoutNode;
 
       // if (fromLayout.atRoot) {
       //   // TODO
@@ -116,4 +150,21 @@ function moveToEmptyArea(event: DragEndEvent, setNodes: SetNodeFn) {
     });
     return;
   }
+}
+
+function getParent(
+  nodes: RootNode[],
+  id: string
+): null | { parent: AnyLayoutNode; indexAtParent: number } {
+  const node = nodes.find(n => {
+    if (n.mode === 'Widget') {
+      return false;
+    }
+    return n.props.children.includes(id);
+  }) as AnyLayoutNode | undefined;
+  if (!node) {
+    return null;
+  }
+
+  return { parent: node as AnyLayoutNode, indexAtParent: node.props.children.indexOf(id) };
 }
