@@ -4,6 +4,7 @@ import { DndContext, pointerWithin } from '@dnd-kit/core';
 import { SingleEditorRenderer } from './SingleEditorRenderer';
 import { useNodes } from './useNodes';
 import { EditorExtraContext } from './extra/EditorExtraContext';
+import { SortableContext } from '@dnd-kit/sortable';
 
 interface Props {
   initialNodes?: RootNode[];
@@ -22,9 +23,10 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
     .map(node => <SingleEditorRenderer key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
 
+  const rootNodeIds = rootNodes.map(node => node.id);
   return (
     <>
-      <div className="flex max-w-[800px] flex-col gap-4">
+      <div className="flex max-w-[800px] flex-col">
         <EditorExtraContext
           value={{
             onMouseEnter,
@@ -34,7 +36,7 @@ export const EditorNodeRenderer = ({ initialNodes, children }: Props) => {
           }}
         >
           <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
-            {comps}
+            <SortableContext items={rootNodeIds}>{comps}</SortableContext>
           </DndContext>
         </EditorExtraContext>
       </div>

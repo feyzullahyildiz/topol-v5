@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { RootNode } from '@/lib/RootNode';
 import { SingleNodeRenderer } from '../render/SingleNodeRenderer';
-import { useDraggable, useDroppable } from '@dnd-kit/core';
+import { useDroppable } from '@dnd-kit/core';
+import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { getSingleEditorChildNodeFromId } from '../hoc/getSubRenderer';
 import { useExtra } from './extra/useExtra';
@@ -19,15 +20,15 @@ export const SingleEditorRenderer = ({
   parentId,
 }: SingleEditorRendererProps) => {
   const { selectedNode, onMouseEnter, onMouseLeave, onDelete } = useExtra();
-  // Configure draggable
-  //   console.log('node.type', node.type);
   const {
     setNodeRef: setDraggableRef,
     listeners,
     attributes,
     transform,
+    transition,
     isDragging,
-  } = useDraggable({
+    isSorting,
+  } = useSortable({
     id: node.id,
     data: { node, index, parentId },
   });
@@ -43,21 +44,13 @@ export const SingleEditorRenderer = ({
   });
 
   const style = {
+    transition,
     transform: CSS.Translate.toString(transform),
     opacity: isDragging ? 0.5 : 1,
     zIndex: isDragging ? 10 : undefined,
     // border: isDragging ? '2px dashed red' : undefined,
   };
 
-  //   const onMouseEnter = () => {
-  //     console.log('onMouseEnter');
-  //   };
-  //   const onMouseLeave = () => {
-  //     console.log('onMouseLeave');
-  //   };
-  //   if (isDragging) {
-  //     console.log('isDragging', node.id, node.type);
-  //   }
   const onMouseEnterHandler = useCallback(() => {
     onMouseEnter(node.id);
   }, [onMouseEnter, node.id]);
@@ -69,7 +62,10 @@ export const SingleEditorRenderer = ({
       {/* Bu son relative ilginç oldu. En parent'ı aydınlatıyordu.  */}
       <div className="relative w-full">
         <div
-          className={cn('absolute top-0 right-0 bottom-0 left-0')}
+          className={cn(
+            'absolute top-0 right-0 bottom-0 left-0',
+            isSorting && 'pointer-events-none opacity-0'
+          )}
           onMouseEnter={onMouseEnterHandler}
         >
           {selectedNode === node.id && (
