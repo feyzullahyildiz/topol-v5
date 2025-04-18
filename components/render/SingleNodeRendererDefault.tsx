@@ -2,7 +2,7 @@ import { EnumNodeType } from '@/types/EnumNodeType';
 import { IRootNode } from '@/types/RootNode';
 import { WidgetNodeTextComponent } from '../WidgetNodeTextComponent';
 import { LayoutOneOneComponent } from '../LayoutNodeOneOneComponent';
-import { getSingleNodeChildNodeFromId } from '@/util/sub-renderer/getSingleNodeChildNodeFromId';
+import { getChildNodeRendererFromIdDefault } from '@/util/sub-renderer/getChildNodeRendererFromIdDefault';
 import { ISubRenderer } from '@/types/ISubRenderer';
 
 interface SingleNodeRendererDefaultProps {
@@ -13,7 +13,7 @@ interface SingleNodeRendererDefaultProps {
 export const SingleNodeRendererDefault = ({
   node,
   childNodeList,
-  subRenderer = getSingleNodeChildNodeFromId,
+  subRenderer = getChildNodeRendererFromIdDefault,
 }: SingleNodeRendererDefaultProps) => {
   switch (node.type) {
     case EnumNodeType.WidgetText:

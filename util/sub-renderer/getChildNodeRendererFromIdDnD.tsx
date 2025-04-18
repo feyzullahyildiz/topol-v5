@@ -1,13 +1,9 @@
-import { SingleNodeRendererDnd } from '@/components/render/SingleNodeRendererDnd';
+import { SingleNodeRendererDndV2 } from '@/components/render/SingleNodeRendererDndV2';
 import { EmptyArea } from '@/components/utility/EmptyAreaDefault';
 import { EmptyAreaDnD } from '@/components/utility/EmptyAreaRenderer';
 import { ISubRenderer } from '@/types/ISubRenderer';
-export const getSingleEditorChildNodeFromId: ISubRenderer = (
-  id,
-  childNodeList,
-  parentId,
-  index
-) => {
+
+export const getChildNodeRendererFromIdDnD: ISubRenderer = (id, childNodeList, parentId, index) => {
   if (id === null) {
     if (index === undefined) {
       // TODO bu senaryo olmaması lazım ama bilmiyoruz...
@@ -27,7 +23,7 @@ export const getSingleEditorChildNodeFromId: ISubRenderer = (
     return <EmptyArea />;
   }
   return (
-    <SingleNodeRendererDnd
+    <SingleNodeRendererDndV2
       node={node}
       childNodeList={childNodeList}
       index={index}

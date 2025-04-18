@@ -1,10 +1,11 @@
 import { IRootNode } from '@/types/RootNode';
 import React, { useEffect } from 'react';
-import { DndContext, pointerWithin } from '@dnd-kit/core';
-import { SingleNodeRendererDnd } from './SingleNodeRendererDnd';
+import { DndContext } from '@dnd-kit/core';
+// import { SingleNodeRendererDnd } from './SingleNodeRendererDnd';
 import { useNodes } from './dnd/useNodes';
-import { SortableContext } from '@dnd-kit/sortable';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { EditorExtraContext } from './dnd/EditorExtraContext';
+import { SingleNodeRendererDndV2 } from './SingleNodeRendererDndV2';
 
 interface Props {
   initialNodes?: IRootNode[];
@@ -21,7 +22,7 @@ export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Pr
   const rootNodes = nodes.filter(node => node.atRoot);
   const childNodes = nodes.filter(node => !node.atRoot);
   const comps = rootNodes
-    .map(node => <SingleNodeRendererDnd key={node.id} node={node} childNodeList={childNodes} />)
+    .map(node => <SingleNodeRendererDndV2 key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
 
   const rootNodeIds = rootNodes.map(node => node.id);
@@ -39,8 +40,10 @@ export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Pr
             onDelete,
           }}
         >
-          <DndContext onDragEnd={onDragEnd} collisionDetection={pointerWithin}>
-            <SortableContext items={rootNodeIds}>{comps}</SortableContext>
+          <DndContext onDragEnd={onDragEnd}>
+            <SortableContext strategy={verticalListSortingStrategy} items={rootNodeIds}>
+              {comps}
+            </SortableContext>
           </DndContext>
         </EditorExtraContext>
       </div>

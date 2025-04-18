@@ -1,7 +1,7 @@
 import { SingleNodeRendererDefault } from '@/components/render/SingleNodeRendererDefault';
 import { ISubRenderer } from '@/types/ISubRenderer';
 
-export const getSingleNodeChildNodeFromId: ISubRenderer = (id, childNodeList) => {
+export const getChildNodeRendererFromIdDefault: ISubRenderer = (id, childNodeList) => {
   if (id === null) {
     return null;
   }

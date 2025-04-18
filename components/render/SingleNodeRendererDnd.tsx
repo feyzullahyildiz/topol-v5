@@ -4,9 +4,10 @@ import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
 import { useDroppable } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { getSingleEditorChildNodeFromId } from '../../util/sub-renderer/getSingleEditorChildNodeFromId';
+import { getChildNodeRendererFromIdDnD } from '../../util/sub-renderer/getChildNodeRendererFromIdDnD';
 import { useExtra } from './dnd/useExtra';
 import { cn } from '@/util/cn';
+// import { useDragOverlayMeasuring } from '@dnd-kit/core/dist/hooks/utilities';
 interface SingleEditorRendererProps {
   node: IRootNode;
   childNodeList: IRootNode[];
@@ -19,6 +20,7 @@ export const SingleNodeRendererDnd = ({
   index,
   parentId,
 }: SingleEditorRendererProps) => {
+  // useDragOverlayMeasuring
   const { selectedNode, onMouseEnter, onMouseLeave, onDelete } = useExtra();
   const {
     setNodeRef: setDraggableRef,
@@ -118,7 +120,7 @@ export const SingleNodeRendererDnd = ({
             <SingleNodeRendererDefault
               node={node}
               childNodeList={childNodeList}
-              subRenderer={getSingleEditorChildNodeFromId}
+              subRenderer={getChildNodeRendererFromIdDnD}
             />
           </div>
           {isOver && (
