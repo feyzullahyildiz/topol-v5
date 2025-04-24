@@ -1,5 +1,6 @@
 import { useDroppable } from '@dnd-kit/core';
 import React from 'react';
+
 import { EmptyArea } from './EmptyAreaDefault';
 
 interface Props {

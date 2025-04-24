@@ -1,6 +1,6 @@
-import { IRootNode } from '@/types/RootNode';
-import { ILayoutOneOneComponentProps } from '@/types/props/layout';
 import { ISubRenderer } from '@/types/ISubRenderer';
+import { ILayoutOneOneComponentProps } from '@/types/props/layout';
+import { IRootNode } from '@/types/RootNode';
 interface Props extends ILayoutOneOneComponentProps {
   id: string;
   childNodeList: IRootNode[];

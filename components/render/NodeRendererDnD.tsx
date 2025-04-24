@@ -1,10 +1,12 @@
-import { IRootNode } from '@/types/RootNode';
-import React, { useEffect } from 'react';
 import { DndContext } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import React, { useEffect } from 'react';
+
+import { IRootNode } from '@/types/RootNode';
+
+import { EditorExtraContext } from './dnd/EditorExtraContext';
 // import { SingleNodeRendererDnd } from './SingleNodeRendererDnd';
 import { useNodes } from './dnd/useNodes';
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { EditorExtraContext } from './dnd/EditorExtraContext';
 import { SingleNodeDndProvider } from './SingleNodeDndProvider';
 
 interface Props {
@@ -19,13 +21,13 @@ export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Pr
     setNodes(initialNodes || []);
   }, [initialNodes, setNodes]);
 
-  const rootNodes = nodes.filter(node => node.atRoot);
-  const childNodes = nodes.filter(node => !node.atRoot);
+  const rootNodes = nodes.filter((node) => node.atRoot);
+  const childNodes = nodes.filter((node) => !node.atRoot);
   const comps = rootNodes
-    .map(node => <SingleNodeDndProvider key={node.id} node={node} childNodeList={childNodes} />)
+    .map((node) => <SingleNodeDndProvider key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
 
-  const rootNodeIds = rootNodes.map(node => node.id);
+  const rootNodeIds = rootNodes.map((node) => node.id);
   useEffect(() => {
     onNodesChange?.(nodes);
   }, [nodes, onNodesChange]);

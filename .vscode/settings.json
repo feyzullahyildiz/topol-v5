@@ -1,28 +1,18 @@
 {
+  // Kaydettiğimizde Prettier ile otomatik formatlama yap
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
+  // Varsayılan biçimlendirici olarak Prettier'ı kullan (özellikle .ts/.tsx dosyalarında)
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // Kaydederken ESLint'in fixAll (tüm düzeltmeleri) uygulamasını da çalıştır
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // Tailwind CSS IntelliSense: JSX içinde className prop'larını HTML gibi işle
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // Tailwind sınıf isimleri için iç içe stringlerde otomatik tamamlama önerilerini etkinleştir
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }

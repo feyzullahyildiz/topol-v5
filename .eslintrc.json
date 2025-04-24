@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "simple-import-sort"],
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "rules": {
+    // Özelleştirilmiş kurallar (gerekliyse) buraya eklenebilir
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+  }
+}

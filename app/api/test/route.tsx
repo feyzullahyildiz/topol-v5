@@ -1,5 +1,6 @@
-import { NodeRendererDefault } from '@/components/render/NodeRendererDefault';
 import { render } from '@react-email/components';
+
+import { NodeRendererDefault } from '@/components/render/NodeRendererDefault';
 
 export const POST = async (req: Request) => {
   const body = await req.json();
