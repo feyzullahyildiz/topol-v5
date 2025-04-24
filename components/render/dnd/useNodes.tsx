@@ -1,9 +1,10 @@
+import { DragEndEvent } from '@dnd-kit/core';
 import { atom, useAtom } from 'jotai';
 import { atomWithImmer } from 'jotai-immer';
-import { IRootNode } from '@/types/RootNode';
-import { DragEndEvent } from '@dnd-kit/core';
-import { IBaseLayoutNode } from '@/types/node/IBaseNode';
+
 import { ChildWidgetRef } from '@/types/ChildWidgetRef';
+import { IBaseLayoutNode } from '@/types/node/IBaseNode';
+import { IRootNode } from '@/types/RootNode';
 type AnyLayoutNode = IBaseLayoutNode<{
   children: ChildWidgetRef[];
 }>;
@@ -38,7 +39,7 @@ export const useNodes = () => {
       return;
     }
     if (!from.atRoot && !to.atRoot) {
-      setNodes(nodes => {
+      setNodes((nodes) => {
         const fromParentObj = getParent(nodes, from.id);
         const toParentObj = getParent(nodes, to.id);
         if (!fromParentObj || !toParentObj) {
@@ -57,9 +58,9 @@ export const useNodes = () => {
       return;
     }
     if (overId && activeId) {
-      setNodes(nodes => {
-        const activeIndex = nodes.findIndex(node => node.id === from.id);
-        const overIndex = nodes.findIndex(node => node.id === to.id);
+      setNodes((nodes) => {
+        const activeIndex = nodes.findIndex((node) => node.id === from.id);
+        const overIndex = nodes.findIndex((node) => node.id === to.id);
         arrayMove(nodes, activeIndex, overIndex);
       });
       return;
@@ -74,13 +75,13 @@ export const useNodes = () => {
     // console.log('onMouseLeave', id);
     // TODO: burayı kaldırdık, belki lazım olabilir.
     // setSelectedNode(undefined);
-    const node = nodes.find(node => node.id === id);
+    const node = nodes.find((node) => node.id === id);
     if (node?.mode === 'Layout') {
       setSelectedNode(undefined);
       return;
     }
 
-    const parent = nodes.find(n => {
+    const parent = nodes.find((n) => {
       if (n.mode === 'Widget') {
         return false;
       }
@@ -121,9 +122,9 @@ function moveToEmptyArea(event: DragEndEvent, setNodes: SetNodeFn) {
 
   if (to.parentId) {
     // layoutun içine giriyor.
-    setNodes(prev => {
-      const parentToLayoutIndex = prev.findIndex(n => n.id === to.parentId);
-      const parentFromLayoutIndex = prev.findIndex(n => n.id === from.parentId);
+    setNodes((prev) => {
+      const parentToLayoutIndex = prev.findIndex((n) => n.id === to.parentId);
+      const parentFromLayoutIndex = prev.findIndex((n) => n.id === from.parentId);
       const toLayout = prev[parentToLayoutIndex] as AnyLayoutNode;
       const fromLayout = prev[parentFromLayoutIndex] as AnyLayoutNode;
 
@@ -155,7 +156,7 @@ function getParent(
   nodes: IRootNode[],
   id: string
 ): null | { parent: AnyLayoutNode; indexAtParent: number } {
-  const node = nodes.find(n => {
+  const node = nodes.find((n) => {
     if (n.mode === 'Widget') {
       return false;
     }

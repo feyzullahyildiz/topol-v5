@@ -1,10 +1,12 @@
-import React from 'react';
-import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
-import { getChildNodeRendererFromIdDnD } from '@/util/sub-renderer/getChildNodeRendererFromIdDnD';
-import { IRootNode } from '@/types/RootNode';
+import { DragOverlay, useDroppable } from '@dnd-kit/core';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { DragOverlay, useDroppable } from '@dnd-kit/core';
+import React from 'react';
+
+import { IRootNode } from '@/types/RootNode';
+import { getChildNodeRendererFromIdDnD } from '@/util/sub-renderer/getChildNodeRendererFromIdDnD';
+
+import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
 import { SingleNodeRendererDnD } from './SingleNodeRendererDnD';
 interface Props {
   node: IRootNode;

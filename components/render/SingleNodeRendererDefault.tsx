@@ -1,8 +1,9 @@
 import { EnumNodeType } from '@/types/EnumNodeType';
-import { IRootNode } from '@/types/RootNode';
-import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
-import { LayoutOneOneComponent } from '../default/LayoutNodeOneOneComponent';
 import { ISubRenderer } from '@/types/ISubRenderer';
+import { IRootNode } from '@/types/RootNode';
+
+import { LayoutOneOneComponent } from '../default/LayoutNodeOneOneComponent';
+import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
 
 interface SingleNodeRendererDefaultProps {
   node: IRootNode;

@@ -1,14 +1,15 @@
 import { IRootNode } from '@/types/RootNode';
-import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
 import { getChildNodeRendererFromIdDefault } from '@/util/sub-renderer/getChildNodeRendererFromIdDefault';
+
+import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
 interface NodeRendererProps {
   nodes: IRootNode[];
 }
 export const NodeRendererDefault = ({ nodes }: NodeRendererProps) => {
-  const rootNodes = nodes.filter(node => node.atRoot);
-  const childNodes = nodes.filter(node => !node.atRoot);
+  const rootNodes = nodes.filter((node) => node.atRoot);
+  const childNodes = nodes.filter((node) => !node.atRoot);
   const comps = rootNodes
-    .map(node => (
+    .map((node) => (
       <SingleNodeRendererDefault
         key={node.id}
         node={node}

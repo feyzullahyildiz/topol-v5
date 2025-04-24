@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { EnumNodeType } from '@/types/EnumNodeType';
 import { EditorNodeRenderer } from '@/components/render/NodeRendererDnD';
 import { NodeRendererForTest } from '@/components/render/NodeRendererForTest';
+import { EnumNodeType } from '@/types/EnumNodeType';
 
 const meta = {
   title: 'EditorRenderer/Basic',

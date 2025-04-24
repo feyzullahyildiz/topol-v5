@@ -1,7 +1,8 @@
 import { EnumNodeType } from '@/types/EnumNodeType';
-import { IRootNode } from '@/types/RootNode';
-import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
 import { ISubRenderer } from '@/types/ISubRenderer';
+import { IRootNode } from '@/types/RootNode';
+
+import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
 import { DnD_LayoutOneOneComponent } from '../dnd/DnD_LayoutNodeOneOneComponent';
 
 interface SingleNodeRendererDefaultProps {

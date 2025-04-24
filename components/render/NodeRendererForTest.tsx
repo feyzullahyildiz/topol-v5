@@ -1,8 +1,9 @@
-import { IRootNode } from '@/types/RootNode';
 import React, { useCallback, useState } from 'react';
-import { EditorNodeRenderer } from './NodeRendererDnD';
-import { NodeRendererDefault } from './NodeRendererDefault';
 
+import { IRootNode } from '@/types/RootNode';
+
+import { NodeRendererDefault } from './NodeRendererDefault';
+import { EditorNodeRenderer } from './NodeRendererDnD';
 interface Props {
   initialNodes?: IRootNode[];
   children?: (nodes: IRootNode[]) => React.ReactNode;
@@ -21,7 +22,7 @@ export const NodeRendererForTest = ({ initialNodes }: Props) => {
     <div className="flex flex-col gap-4 p-16">
       <h2 className="text-2xl font-bold">Edit Area</h2>
       <EditorNodeRenderer initialNodes={initialNodes} onNodesChange={makeRequest}>
-        {nextNodes => (
+        {(nextNodes) => (
           <>
             <hr />
             <h2 className="text-2xl font-bold">View Area (Result)</h2>
