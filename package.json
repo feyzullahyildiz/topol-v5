@@ -2,6 +2,7 @@
   "name": "topol-v5",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -38,6 +39,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.31.0",
+    "@typescript-eslint/parser": "^8.31.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.5",
     "eslint-config-prettier": "^10.1.1",
