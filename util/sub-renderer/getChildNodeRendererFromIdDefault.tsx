@@ -8,7 +8,14 @@ export const getChildNodeRendererFromIdDefault: ISubRenderer = (id, childNodeLis
   const node = childNodeList.find(node => node.id === id) || null;
 
   if (!node) {
+    // TODO buraya bi bak
     return <div />;
   }
-  return <SingleNodeRendererDefault node={node} childNodeList={childNodeList} />;
+  return (
+    <SingleNodeRendererDefault
+      node={node}
+      childNodeList={childNodeList}
+      subRenderer={getChildNodeRendererFromIdDefault}
+    />
+  );
 };

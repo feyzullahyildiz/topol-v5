@@ -1,133 +1,33 @@
-import { useCallback } from 'react';
+import { EnumNodeType } from '@/types/EnumNodeType';
 import { IRootNode } from '@/types/RootNode';
-import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
-import { useDroppable } from '@dnd-kit/core';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { getChildNodeRendererFromIdDnD } from '../../util/sub-renderer/getChildNodeRendererFromIdDnD';
-import { useExtra } from './dnd/useExtra';
-import { cn } from '@/util/cn';
-// import { useDragOverlayMeasuring } from '@dnd-kit/core/dist/hooks/utilities';
-interface SingleEditorRendererProps {
+import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
+import { ISubRenderer } from '@/types/ISubRenderer';
+import { DnD_LayoutOneOneComponent } from '../dnd/DnD_LayoutNodeOneOneComponent';
+
+interface SingleNodeRendererDefaultProps {
   node: IRootNode;
   childNodeList: IRootNode[];
-  index?: number | undefined;
-  parentId?: string | undefined;
+  subRenderer: ISubRenderer;
 }
-export const SingleNodeRendererDnd = ({
+export const SingleNodeRendererDnD = ({
   node,
   childNodeList,
-  index,
-  parentId,
-}: SingleEditorRendererProps) => {
-  // useDragOverlayMeasuring
-  const { selectedNode, onMouseEnter, onMouseLeave, onDelete } = useExtra();
-  const {
-    setNodeRef: setDraggableRef,
-    listeners,
-    attributes,
-    transform,
-    transition,
-    isDragging,
-    isSorting,
-  } = useSortable({
-    id: node.id,
-    data: { node, index, parentId },
-  });
-
-  const isLayout = node.mode === 'Layout';
-  const {
-    setNodeRef: setDroppableRef,
-    isOver,
-    // over,
-  } = useDroppable({
-    id: node.id,
-    data: { node, index },
-  });
-
-  const style = {
-    transition,
-    transform: CSS.Translate.toString(transform),
-    opacity: isDragging ? 0.5 : 1,
-    zIndex: isDragging ? 10 : undefined,
-    // border: isDragging ? '2px dashed red' : undefined,
-  };
-
-  const onMouseEnterHandler = useCallback(() => {
-    onMouseEnter(node.id);
-  }, [onMouseEnter, node.id]);
-  const onMouseLeaveHandler = useCallback(() => {
-    onMouseLeave(node.id);
-  }, [onMouseLeave, node.id]);
-  return (
-    <>
-      {/* Bu son relative ilginç oldu. En parent'ı aydınlatıyordu.  */}
-      <div className="relative w-full">
-        <div
-          className={cn(
-            'absolute top-0 right-0 bottom-0 left-0',
-            isSorting && 'pointer-events-none opacity-0'
-          )}
-          onMouseEnter={onMouseEnterHandler}
-        >
-          {selectedNode === node.id && (
-            <div
-              onMouseLeave={onMouseLeaveHandler}
-              className={cn(
-                'absolute top-0 right-0 bottom-0 left-0',
-                'border-2 border-solid',
-                isLayout ? 'border-violet-600' : 'border-green-500'
-              )}
-            >
-              <div
-                className={cn(
-                  'pointer-events-auto',
-                  // 'top-0 bottom-0',
-                  // '-top-1 -bottom-1',
-                  '-top-[2px] -bottom-[2px]',
-                  'absolute left-0 -translate-x-full',
-                  'flex flex-col justify-between'
-                )}
-              >
-                <div
-                  {...listeners}
-                  className={cn(
-                    // 'pointer-events-auto',
-                    'size-6 bg-green-500',
-                    'flex items-center justify-center',
-                    'cursor-pointer'
-                  )}
-                >
-                  +
-                </div>
-                <div
-                  onClick={() => onDelete(node.id)}
-                  className={cn(
-                    'size-6 bg-red-500',
-                    'flex items-center justify-center',
-                    'cursor-pointer'
-                  )}
-                >
-                  x
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div ref={setDroppableRef}>
-          <div ref={setDraggableRef} style={style} {...attributes}>
-            <SingleNodeRendererDefault
-              node={node}
-              childNodeList={childNodeList}
-              subRenderer={getChildNodeRendererFromIdDnD}
-            />
-          </div>
-          {isOver && (
-            <div className="pointer-events-none absolute inset-0 top-0 right-0 bottom-0 left-0 z-10 border-2 border-dashed border-red-500" />
-          )}
-        </div>
-      </div>
-    </>
-  );
+  subRenderer,
+}: SingleNodeRendererDefaultProps) => {
+  switch (node.type) {
+    case EnumNodeType.WidgetText:
+      return <WidgetNodeTextComponent key={node.id} {...node.props} />;
+    case EnumNodeType.LayoutOneOne:
+      return (
+        <DnD_LayoutOneOneComponent
+          key={node.id}
+          id={node.id}
+          {...node.props}
+          childNodeList={childNodeList}
+          subRenderer={subRenderer}
+        />
+      );
+    default:
+      return null;
+  }
 };

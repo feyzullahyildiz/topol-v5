@@ -77,6 +77,13 @@ export const LayoutOneOne_with_GrandChild: Story = {
   args: {
     initialNodes: [
       {
+        id: '1',
+        props: { text: '1' },
+        atRoot: true,
+        type: EnumNodeType.WidgetText,
+        mode: 'Widget',
+      },
+      {
         id: 'layout',
         props: {
           children: ['left', 'another-layout'],

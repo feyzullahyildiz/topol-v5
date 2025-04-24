@@ -1,19 +1,18 @@
 import { EnumNodeType } from '@/types/EnumNodeType';
 import { IRootNode } from '@/types/RootNode';
-import { WidgetNodeTextComponent } from '../WidgetNodeTextComponent';
-import { LayoutOneOneComponent } from '../LayoutNodeOneOneComponent';
-import { getChildNodeRendererFromIdDefault } from '@/util/sub-renderer/getChildNodeRendererFromIdDefault';
+import { WidgetNodeTextComponent } from '../default/WidgetNodeTextComponent';
+import { LayoutOneOneComponent } from '../default/LayoutNodeOneOneComponent';
 import { ISubRenderer } from '@/types/ISubRenderer';
 
 interface SingleNodeRendererDefaultProps {
   node: IRootNode;
   childNodeList: IRootNode[];
-  subRenderer?: ISubRenderer;
+  subRenderer: ISubRenderer;
 }
 export const SingleNodeRendererDefault = ({
   node,
   childNodeList,
-  subRenderer = getChildNodeRendererFromIdDefault,
+  subRenderer,
 }: SingleNodeRendererDefaultProps) => {
   switch (node.type) {
     case EnumNodeType.WidgetText:

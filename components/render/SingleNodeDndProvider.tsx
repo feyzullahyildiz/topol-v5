@@ -5,15 +5,14 @@ import { IRootNode } from '@/types/RootNode';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { DragOverlay, useDroppable } from '@dnd-kit/core';
-import { getChildNodeRendererFromIdDefault } from '@/util/sub-renderer/getChildNodeRendererFromIdDefault';
-
+import { SingleNodeRendererDnD } from './SingleNodeRendererDnD';
 interface Props {
   node: IRootNode;
   childNodeList: IRootNode[];
   index?: number | undefined;
   parentId?: string | undefined;
 }
-export const SingleNodeRendererDndV2 = ({ node, childNodeList, index, parentId }: Props) => {
+export const SingleNodeDndProvider = ({ node, childNodeList, index, parentId }: Props) => {
   const {
     setNodeRef: setDraggableRef,
     listeners,
@@ -46,7 +45,7 @@ export const SingleNodeRendererDndV2 = ({ node, childNodeList, index, parentId }
     <>
       <div ref={setDroppableRef}>
         <div ref={setDraggableRef} style={style} {...attributes} {...listeners}>
-          <SingleNodeRendererDefault
+          <SingleNodeRendererDnD
             node={node}
             childNodeList={childNodeList}
             subRenderer={getChildNodeRendererFromIdDnD}
@@ -56,10 +55,11 @@ export const SingleNodeRendererDndV2 = ({ node, childNodeList, index, parentId }
       {isSorting && isDragging && (
         <DragOverlay>
           <div className="opacity-50">
+            {/* Burası Default kalabilir, zaten overlayda çıkıyor sadece */}
             <SingleNodeRendererDefault
               node={node}
               childNodeList={childNodeList}
-              subRenderer={getChildNodeRendererFromIdDefault}
+              subRenderer={getChildNodeRendererFromIdDnD}
             />
           </div>
         </DragOverlay>

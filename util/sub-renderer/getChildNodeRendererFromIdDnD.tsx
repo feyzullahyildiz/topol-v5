@@ -1,4 +1,4 @@
-import { SingleNodeRendererDndV2 } from '@/components/render/SingleNodeRendererDndV2';
+import { SingleNodeDndProvider } from '@/components/render/SingleNodeDndProvider';
 import { EmptyArea } from '@/components/utility/EmptyAreaDefault';
 import { EmptyAreaDnD } from '@/components/utility/EmptyAreaRenderer';
 import { ISubRenderer } from '@/types/ISubRenderer';
@@ -23,7 +23,7 @@ export const getChildNodeRendererFromIdDnD: ISubRenderer = (id, childNodeList, p
     return <EmptyArea />;
   }
   return (
-    <SingleNodeRendererDndV2
+    <SingleNodeDndProvider
       node={node}
       childNodeList={childNodeList}
       index={index}

@@ -5,7 +5,7 @@ import { DndContext } from '@dnd-kit/core';
 import { useNodes } from './dnd/useNodes';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { EditorExtraContext } from './dnd/EditorExtraContext';
-import { SingleNodeRendererDndV2 } from './SingleNodeRendererDndV2';
+import { SingleNodeDndProvider } from './SingleNodeDndProvider';
 
 interface Props {
   initialNodes?: IRootNode[];
@@ -22,7 +22,7 @@ export const EditorNodeRenderer = ({ initialNodes, children, onNodesChange }: Pr
   const rootNodes = nodes.filter(node => node.atRoot);
   const childNodes = nodes.filter(node => !node.atRoot);
   const comps = rootNodes
-    .map(node => <SingleNodeRendererDndV2 key={node.id} node={node} childNodeList={childNodes} />)
+    .map(node => <SingleNodeDndProvider key={node.id} node={node} childNodeList={childNodes} />)
     .filter(Boolean);
 
   const rootNodeIds = rootNodes.map(node => node.id);
