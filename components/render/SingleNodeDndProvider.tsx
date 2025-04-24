@@ -7,7 +7,7 @@ import { IRootNode } from '@/types/RootNode';
 import { getChildNodeRendererFromIdDnD } from '@/util/sub-renderer/getChildNodeRendererFromIdDnD';
 
 import { SingleNodeRendererDefault } from './SingleNodeRendererDefault';
-import { SingleNodeRendererDnD } from './SingleNodeRendererDnD_';
+import { SingleNodeRendererDnD } from './SingleNodeRendererDnD';
 interface Props {
   node: IRootNode;
   childNodeList: IRootNode[];
