@@ -5,7 +5,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   // Kaydederken ESLint'in fixAll (tüm düzeltmeleri) uygulamasını da çalıştır
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
   // Tailwind CSS IntelliSense: JSX içinde className prop'larını HTML gibi işle
   "tailwindCSS.includeLanguages": {
