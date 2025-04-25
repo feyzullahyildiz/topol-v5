@@ -8,6 +8,7 @@ import { IBaseRow } from '@/types/node/IBaseRow';
 import { IRootItems } from '@/types/RootNode';
 
 import { RowComponent } from './RowComponent';
+import { CustomBorderAndDragHandle } from './util/CustomBorderAndDragHandle';
 
 interface Props extends IBaseRow {
   columnRenderer: IColumnRenderer;
@@ -29,7 +30,7 @@ export const DnD_RowComponent = ({
   return (
     <Draggable draggableId={id} index={index}>
       {(provided) => (
-        <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+        <div className="group/row relative" ref={provided.innerRef} {...provided.draggableProps}>
           <RowComponent
             id={id}
             type={type}
@@ -38,6 +39,13 @@ export const DnD_RowComponent = ({
             itemList={itemList}
             columnRenderer={columnRenderer}
             itemRenderer={itemRenderer}
+          />
+          <CustomBorderAndDragHandle
+            squareSize={32}
+            borderSize={48}
+            className="z-0 group-hover/row:flex"
+            color="#a259ff"
+            dragHandleProps={provided.dragHandleProps}
           />
         </div>
       )}

@@ -1,3 +1,3 @@
-export interface IWidgetTextComponentProps {
+export interface IItemTextComponentProps {
   text: string;
 }

@@ -63,7 +63,7 @@ export const TextOnly: Story = {
         type: 'item',
         component: 'text',
         props: {
-          text: 'Hello item 3',
+          text: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
         },
       },
       {
