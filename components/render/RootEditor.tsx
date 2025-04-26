@@ -5,6 +5,7 @@ import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDnD } from '@/util/column-renderer/getColumnRendererDnD';
 import { getItemRendererDnD } from '@/util/column-renderer/getItemRendererDnD';
 
+import { EditorExtraContext } from './dnd/EditorExtraContext';
 import { useNodes } from './dnd/useNodes';
 import { DnD_RowComponent } from './DnD_RowComponent';
 
@@ -44,18 +45,20 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
   }, [root, onNodesChange]);
   return (
     <>
-      <div className="flex w-full max-w-[800px] flex-col">
-        <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-          <Droppable droppableId="root" type="row">
-            {(provided) => (
-              <div ref={provided.innerRef} {...provided.droppableProps}>
-                {comps}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
+      <EditorExtraContext.Provider value={{ root, setRoot }}>
+        <div className="flex w-full max-w-[800px] flex-col">
+          <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
+            <Droppable droppableId="root" type="row">
+              {(provided) => (
+                <div ref={provided.innerRef} {...provided.droppableProps}>
+                  {comps}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
+      </EditorExtraContext.Provider>
       {children?.(root)}
     </>
   );

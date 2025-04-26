@@ -1,7 +1,13 @@
+import { DnD_ItemTextComponent } from '@/components/dnd/DnD_ItemTextComponent';
 import { DnD_ItemComponent } from '@/components/render/DnD_ItemComponent';
 import { IItemRenderer } from '@/types/IItemRenderer';
 
-import { getItemRendererDefault } from './getItemRendererDefault';
+const componentSelector: IItemRenderer = (id, index, item) => {
+  if (item.component === 'text') {
+    return <DnD_ItemTextComponent id={id} key={id} text={item.props.text} />;
+  }
+  return null;
+};
 
 export const getItemRendererDnD: IItemRenderer = (id, index, item) => {
   return (
@@ -10,7 +16,7 @@ export const getItemRendererDnD: IItemRenderer = (id, index, item) => {
       key={id}
       index={index}
       item={item}
-      itemRenderer={getItemRendererDefault}
+      itemRenderer={componentSelector}
     />
   );
 };

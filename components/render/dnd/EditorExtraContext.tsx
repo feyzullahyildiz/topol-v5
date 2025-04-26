@@ -1,15 +1,12 @@
 import { createContext } from 'react';
 
+import { IRoot } from '@/types/IRoot';
+
+import { ISetRootFunction } from './useNodes';
+
 type EditorExtraContextType = {
-  onMouseEnter: (id: string) => void;
-  onMouseLeave: (id: string) => void;
-  selectedNode: string | undefined;
-  onDelete: (id: string) => void;
+  root: IRoot;
+  setRoot: ISetRootFunction;
 };
 
-export const EditorExtraContext = createContext<EditorExtraContextType>({
-  onMouseEnter: () => {},
-  onMouseLeave: () => {},
-  selectedNode: undefined,
-  onDelete: () => {},
-});
+export const EditorExtraContext = createContext<EditorExtraContextType>(null!);

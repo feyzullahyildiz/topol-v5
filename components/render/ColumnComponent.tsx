@@ -17,7 +17,7 @@ export const ColumnComponent = ({
   children,
 }: ColumnComponentProps) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex shrink-0 flex-col gap-4">
       {itemIDs.map((id, index) => {
         const item = itemRecord[id];
         return itemRenderer(id, index, item);

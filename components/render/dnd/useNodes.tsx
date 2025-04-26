@@ -71,3 +71,6 @@ export const useNodes = () => {
 
   return { root, setRoot, onDragEnd, onDragStart };
 };
+
+// Export the exact type of setRoot that useAtom returns
+export type ISetRootFunction = ReturnType<typeof useNodes>['setRoot'];
