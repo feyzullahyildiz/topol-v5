@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import { IRootNode } from '@/types/RootNode';
+import { IRoot } from '@/types/RootNode';
 import { getColumnRendererDnD } from '@/util/column-renderer/getColumnRendererDnD';
 import { getItemRendererDnD } from '@/util/column-renderer/getItemRendererDnD';
 
@@ -9,39 +9,33 @@ import { useNodes } from './dnd/useNodes';
 import { DnD_RowComponent } from './DnD_RowComponent';
 
 interface Props {
-  initialNodes?: IRootNode[];
-  children?: (nodes: IRootNode[]) => React.ReactNode;
-  onNodesChange?: (nodes: IRootNode[]) => void;
+  initialRoot: IRoot;
+  children?: (nodes: IRoot) => React.ReactNode;
+  onNodesChange?: (nodes: IRoot) => void;
 }
-export const RootEditor = ({ initialNodes, children, onNodesChange }: Props) => {
-  const { nodes, setNodes } = useNodes();
-  const onDragStart = useCallback(() => {
-    document.body.style.cursor = 'grabbing';
-  }, []);
-  const onDragEnd = useCallback(() => {
-    document.body.style.cursor = 'inherit';
-  }, []);
+export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
+  const { nodes, setNodes, onDragEnd, onDragStart } = useNodes();
   useEffect(() => {
-    setNodes(initialNodes || []);
-  }, [initialNodes, setNodes]);
+    setNodes(initialRoot);
+  }, [initialRoot, setNodes]);
 
-  const rowList = nodes.filter((node) => node.type === 'row');
-  const columnList = nodes.filter((node) => node.type === 'column');
-  const itemList = nodes.filter((node) => node.type === 'item');
-  const comps = rowList
-    .map((node, index) => (
-      <DnD_RowComponent
-        key={node.id}
-        id={node.id}
-        index={index}
-        type={node.type}
-        columnIds={node.columnIds}
-        columnList={columnList}
-        itemList={itemList}
-        columnRenderer={getColumnRendererDnD}
-        itemRenderer={getItemRendererDnD}
-      />
-    ))
+  const comps = nodes.rowOrder
+    .map((rowId, index) => {
+      const row = initialRoot.rows[rowId];
+      return (
+        <DnD_RowComponent
+          key={row.id}
+          id={row.id}
+          index={index}
+          type={row.type}
+          columnIds={row.columnIds}
+          columnRecord={initialRoot.columns}
+          itemRecord={initialRoot.items}
+          columnRenderer={getColumnRendererDnD}
+          itemRenderer={getItemRendererDnD}
+        />
+      );
+    })
     .filter(Boolean);
 
   useEffect(() => {
@@ -49,7 +43,7 @@ export const RootEditor = ({ initialNodes, children, onNodesChange }: Props) => 
   }, [nodes, onNodesChange]);
   return (
     <>
-      <div className="flex max-w-[800px] flex-col">
+      <div className="flex w-full max-w-[800px] flex-col">
         <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
           <Droppable droppableId="root" type="row">
             {(provided) => (

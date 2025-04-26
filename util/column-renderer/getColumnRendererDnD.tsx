@@ -1,7 +1,13 @@
 import { DnD_ColumnComponent } from '@/components/render/DnD_ColumnComponent';
 import { IColumnRenderer } from '@/types/IColumnRenderer';
 
-export const getColumnRendererDnD: IColumnRenderer = (id, index, column, items, itemRenderer) => {
+export const getColumnRendererDnD: IColumnRenderer = (
+  id,
+  index,
+  column,
+  itemRecord,
+  itemRenderer
+) => {
   return (
     <DnD_ColumnComponent
       key={id}
@@ -9,7 +15,7 @@ export const getColumnRendererDnD: IColumnRenderer = (id, index, column, items, 
       index={index}
       itemIDs={column.itemIDs}
       type="column"
-      items={items}
+      itemRecord={itemRecord}
       itemRenderer={itemRenderer}
     />
   );

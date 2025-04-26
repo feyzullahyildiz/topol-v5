@@ -5,7 +5,7 @@ export const getColumnRendererDefault: IColumnRenderer = (
   id,
   index,
   column,
-  items,
+  itemRecord,
   itemRenderer
 ) => {
   return (
@@ -14,7 +14,7 @@ export const getColumnRendererDefault: IColumnRenderer = (
       id={id}
       itemIDs={column.itemIDs}
       type="column"
-      items={items}
+      itemRecord={itemRecord}
       itemRenderer={itemRenderer}
     />
   );

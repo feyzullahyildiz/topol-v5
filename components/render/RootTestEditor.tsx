@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react';
 
-import { IRootNode } from '@/types/RootNode';
+import { IRoot } from '@/types/RootNode';
 
 import { RootEditor } from './RootEditor';
 import { RootPreview } from './RootPreview';
 interface Props {
-  initialNodes?: IRootNode[];
-  children?: (nodes: IRootNode[]) => React.ReactNode;
+  initialRoot: IRoot;
+  children?: (nodes: IRoot) => React.ReactNode;
 }
-export const RootTestEditor = ({ initialNodes }: Props) => {
+export const RootTestEditor = ({ initialRoot }: Props) => {
   const [result, setResult] = useState<string>('');
-  const makeRequest = useCallback(async (nodes: IRootNode[]) => {
+  const makeRequest = useCallback(async (nodes: IRoot) => {
     const res = await fetch('http://localhost:3000/api/test', {
       method: 'POST',
       body: JSON.stringify(nodes),
@@ -19,14 +19,14 @@ export const RootTestEditor = ({ initialNodes }: Props) => {
     setResult(data);
   }, []);
   return (
-    <div className="flex flex-col gap-4 p-16">
+    <div className="flex w-full flex-col gap-4 p-16">
       <h2 className="text-2xl font-bold">Edit Area</h2>
-      <RootEditor initialNodes={initialNodes} onNodesChange={makeRequest}>
-        {(nextNodes) => (
+      <RootEditor initialRoot={initialRoot} onNodesChange={makeRequest}>
+        {(nextRoot) => (
           <>
             <hr />
             <h2 className="text-2xl font-bold">View Area (Result)</h2>
-            <RootPreview nodes={nextNodes} />
+            <RootPreview root={nextRoot} />
           </>
         )}
       </RootEditor>

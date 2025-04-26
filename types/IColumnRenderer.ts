@@ -1,11 +1,11 @@
 import { IItemRenderer } from './IItemRenderer';
 import { IBaseColumn } from './node/IBaseColumn';
-import { IRootItems } from './RootNode';
+import { IRootItemRecord } from './RootNode';
 
 export type IColumnRenderer = (
   id: string,
   index: number,
   column: IBaseColumn,
-  itemList: IRootItems[],
+  itemRecord: IRootItemRecord,
   itemRenderer: IItemRenderer
 ) => React.ReactNode | null;

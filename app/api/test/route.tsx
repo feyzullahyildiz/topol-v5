@@ -5,7 +5,7 @@ import { RootPreview } from '@/components/render/RootPreview';
 export const POST = async (req: Request) => {
   const body = await req.json();
 
-  const str = await render(<RootPreview nodes={body} />, { pretty: true });
+  const str = await render(<RootPreview root={body} />, { pretty: true });
   return new Response(str, {
     headers: {
       'Access-Control-Allow-Origin': '*',

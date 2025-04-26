@@ -3,9 +3,8 @@ import React from 'react';
 
 import { IColumnRenderer } from '@/types/IColumnRenderer';
 import { IItemRenderer } from '@/types/IItemRenderer';
-import { IBaseColumn } from '@/types/node/IBaseColumn';
 import { IBaseRow } from '@/types/node/IBaseRow';
-import { IRootItems } from '@/types/RootNode';
+import { IRootColumnRecord, IRootItemRecord } from '@/types/RootNode';
 
 import { RowComponent } from './RowComponent';
 import { CustomBorderAndDragHandle } from './util/CustomBorderAndDragHandle';
@@ -13,8 +12,8 @@ import { CustomBorderAndDragHandle } from './util/CustomBorderAndDragHandle';
 interface Props extends IBaseRow {
   columnRenderer: IColumnRenderer;
   itemRenderer: IItemRenderer;
-  columnList: IBaseColumn[];
-  itemList: IRootItems[];
+  columnRecord: IRootColumnRecord;
+  itemRecord: IRootItemRecord;
   index: number;
 }
 export const DnD_RowComponent = ({
@@ -22,8 +21,8 @@ export const DnD_RowComponent = ({
   index,
   type,
   columnIds,
-  columnList,
-  itemList,
+  columnRecord,
+  itemRecord,
   columnRenderer,
   itemRenderer,
 }: Props) => {
@@ -35,8 +34,8 @@ export const DnD_RowComponent = ({
             id={id}
             type={type}
             columnIds={columnIds}
-            columnList={columnList}
-            itemList={itemList}
+            columnRecord={columnRecord}
+            itemRecord={itemRecord}
             columnRenderer={columnRenderer}
             itemRenderer={itemRenderer}
           />
