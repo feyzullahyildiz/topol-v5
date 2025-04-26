@@ -26,6 +26,7 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
         <DnD_RowComponent
           key={row.id}
           id={row.id}
+          row={row}
           index={index}
           type={row.type}
           columnIds={row.columnIds}
