@@ -5,6 +5,7 @@ import { ColumnComponent } from '@/components/render/ColumnComponent';
 import { IItemRenderer } from '@/types/IItemRenderer';
 import { IRootItemRecord } from '@/types/IRoot';
 import { IBaseColumn } from '@/types/node/IBaseColumn';
+import { cn } from '@/util/cn';
 
 import { EmptyArea } from '../utility/EmptyAreaDefault';
 
@@ -16,7 +17,7 @@ interface Props extends IBaseColumn {
 export const DnD_ColumnComponent = ({ id, itemRecord, itemIDs, itemRenderer, ...props }: Props) => {
   return (
     <Droppable droppableId={id} type="column">
-      {(provided) => {
+      {(provided, snapshot) => {
         if (itemIDs.length === 0) {
           return (
             <EmptyArea ref={provided.innerRef} {...provided.droppableProps}>
@@ -31,6 +32,7 @@ export const DnD_ColumnComponent = ({ id, itemRecord, itemIDs, itemRenderer, ...
               itemRecord={itemRecord}
               itemIDs={itemIDs}
               itemRenderer={itemRenderer}
+              className={cn(snapshot.isDraggingOver && 'bg-blue-300/20')}
               {...props}
             >
               {provided.placeholder}
