@@ -23,6 +23,11 @@ export const TextOnly: Story = {
           type: 'row',
           columnIds: ['c1', 'c2'],
         },
+        r2: {
+          id: 'r2',
+          type: 'row',
+          columnIds: ['c3'],
+        },
       },
       columns: {
         c1: {
@@ -35,6 +40,11 @@ export const TextOnly: Story = {
           type: 'column',
           itemIDs: ['item-3'],
         },
+        c3: {
+          id: 'c3',
+          type: 'column',
+          itemIDs: ['item-4'],
+        },
       },
       items: {
         'item-1': {
@@ -42,7 +52,7 @@ export const TextOnly: Story = {
           type: 'item',
           component: 'text',
           props: {
-            text: 'Hello item 1',
+            text: 'r1 | c1 | item-1',
           },
         },
         'item-2': {
@@ -50,7 +60,7 @@ export const TextOnly: Story = {
           type: 'item',
           component: 'text',
           props: {
-            text: 'Hello item 2',
+            text: 'r1 | c1 | item-2',
           },
         },
         'item-3': {
@@ -58,11 +68,19 @@ export const TextOnly: Story = {
           type: 'item',
           component: 'text',
           props: {
-            text: 'Hello item 3',
+            text: 'r1 | c2 | item-3',
+          },
+        },
+        'item-4': {
+          id: 'item-4',
+          type: 'item',
+          component: 'text',
+          props: {
+            text: 'r2 | c3 | item-4',
           },
         },
       },
-      rowOrder: ['r1'],
+      rowOrder: ['r1', 'r2'],
     },
   },
 };

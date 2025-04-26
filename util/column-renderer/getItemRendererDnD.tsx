@@ -5,6 +5,12 @@ import { getItemRendererDefault } from './getItemRendererDefault';
 
 export const getItemRendererDnD: IItemRenderer = (id, index, item) => {
   return (
-    <DnD_ItemComponent id={id} index={index} item={item} itemRenderer={getItemRendererDefault} />
+    <DnD_ItemComponent
+      id={id}
+      key={id}
+      index={index}
+      item={item}
+      itemRenderer={getItemRendererDefault}
+    />
   );
 };

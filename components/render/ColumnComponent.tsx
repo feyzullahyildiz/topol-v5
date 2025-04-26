@@ -11,7 +11,7 @@ interface ColumnComponentProps extends IBaseColumn {
 
 export const ColumnComponent = ({ itemRecord, itemIDs, itemRenderer }: ColumnComponentProps) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       {itemIDs.map((id, index) => {
         const item = itemRecord[id];
         return itemRenderer(id, index, item);

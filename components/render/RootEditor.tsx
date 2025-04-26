@@ -14,14 +14,14 @@ interface Props {
   onNodesChange?: (nodes: IRoot) => void;
 }
 export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
-  const { nodes, setNodes, onDragEnd, onDragStart } = useNodes();
+  const { root, setRoot, onDragEnd, onDragStart } = useNodes();
   useEffect(() => {
-    setNodes(initialRoot);
-  }, [initialRoot, setNodes]);
+    setRoot(initialRoot);
+  }, [initialRoot, setRoot]);
 
-  const comps = nodes.rowOrder
+  const comps = root.rowOrder
     .map((rowId, index) => {
-      const row = initialRoot.rows[rowId];
+      const row = root.rows[rowId];
       return (
         <DnD_RowComponent
           key={row.id}
@@ -29,8 +29,8 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
           index={index}
           type={row.type}
           columnIds={row.columnIds}
-          columnRecord={initialRoot.columns}
-          itemRecord={initialRoot.items}
+          columnRecord={root.columns}
+          itemRecord={root.items}
           columnRenderer={getColumnRendererDnD}
           itemRenderer={getItemRendererDnD}
         />
@@ -39,8 +39,9 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
     .filter(Boolean);
 
   useEffect(() => {
-    onNodesChange?.(nodes);
-  }, [nodes, onNodesChange]);
+    console.log('root', root);
+    onNodesChange?.(root);
+  }, [root, onNodesChange]);
   return (
     <>
       <div className="flex w-full max-w-[800px] flex-col">
@@ -55,7 +56,7 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
           </Droppable>
         </DragDropContext>
       </div>
-      {children?.(nodes)}
+      {children?.(root)}
     </>
   );
 };
