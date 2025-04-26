@@ -1,4 +1,4 @@
-import { IRoot } from '@/types/RootNode';
+import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDefault } from '@/util/column-renderer/getColumnRendererDefault';
 import { getItemRendererDefault } from '@/util/column-renderer/getItemRendererDefault';
 

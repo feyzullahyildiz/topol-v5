@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import React, { useEffect } from 'react';
 
-import { IRoot } from '@/types/RootNode';
+import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDnD } from '@/util/column-renderer/getColumnRendererDnD';
 import { getItemRendererDnD } from '@/util/column-renderer/getItemRendererDnD';
 

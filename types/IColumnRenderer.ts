@@ -1,6 +1,6 @@
 import { IItemRenderer } from './IItemRenderer';
+import { IRootItemRecord } from './IRoot';
 import { IBaseColumn } from './node/IBaseColumn';
-import { IRootItemRecord } from './RootNode';
 
 export type IColumnRenderer = (
   id: string,

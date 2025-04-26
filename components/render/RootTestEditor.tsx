@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
-import { IRoot } from '@/types/RootNode';
+import { IRoot } from '@/types/IRoot';
 
 import { RootEditor } from './RootEditor';
 import { RootPreview } from './RootPreview';

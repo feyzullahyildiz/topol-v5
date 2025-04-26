@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { atomWithImmer } from 'jotai-immer';
 import { useCallback } from 'react';
 
-import { IRoot } from '@/types/RootNode';
+import { IRoot } from '@/types/IRoot';
 
 const nodesAtom = atomWithImmer<IRoot>({
   rows: {},

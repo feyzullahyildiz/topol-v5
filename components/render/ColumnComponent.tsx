@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { IItemRenderer } from '@/types/IItemRenderer';
+import { IRootItemRecord } from '@/types/IRoot';
 import { IBaseColumn } from '@/types/node/IBaseColumn';
-import { IRootItemRecord } from '@/types/RootNode';
 
 interface ColumnComponentProps extends IBaseColumn {
   itemRecord: IRootItemRecord;

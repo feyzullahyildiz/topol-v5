@@ -2,7 +2,7 @@ import { Draggable } from '@hello-pangea/dnd';
 import React from 'react';
 
 import { IItemRenderer } from '@/types/IItemRenderer';
-import { IRootItems } from '@/types/RootNode';
+import { IRootItems } from '@/types/IRoot';
 
 import { CustomBorderAndDragHandle } from './util/CustomBorderAndDragHandle';
 

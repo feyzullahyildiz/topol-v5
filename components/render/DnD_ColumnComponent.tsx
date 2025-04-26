@@ -3,8 +3,8 @@ import React from 'react';
 
 import { ColumnComponent } from '@/components/render/ColumnComponent';
 import { IItemRenderer } from '@/types/IItemRenderer';
+import { IRootItemRecord } from '@/types/IRoot';
 import { IBaseColumn } from '@/types/node/IBaseColumn';
-import { IRootItemRecord } from '@/types/RootNode';
 
 import { EmptyArea } from '../utility/EmptyAreaDefault';
 

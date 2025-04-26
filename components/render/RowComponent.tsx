@@ -2,8 +2,8 @@ import React from 'react';
 
 import { IColumnRenderer } from '@/types/IColumnRenderer';
 import { IItemRenderer } from '@/types/IItemRenderer';
+import { IRootColumnRecord, IRootItemRecord } from '@/types/IRoot';
 import { IBaseRow } from '@/types/node/IBaseRow';
-import { IRootColumnRecord, IRootItemRecord } from '@/types/RootNode';
 
 interface Props extends IBaseRow {
   columnRenderer: IColumnRenderer;
