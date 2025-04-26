@@ -39,7 +39,6 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
     .filter(Boolean);
 
   useEffect(() => {
-    console.log('root', root);
     onNodesChange?.(root);
   }, [root, onNodesChange]);
   return (

@@ -22,8 +22,9 @@ export const DnD_ColumnComponent = ({ id, itemRecord, itemIDs, itemRenderer, ...
             itemIDs={itemIDs}
             itemRenderer={itemRenderer}
             {...props}
-          />
-          {provided.placeholder}
+          >
+            {provided.placeholder}
+          </ColumnComponent>
         </div>
       )}
     </Droppable>
