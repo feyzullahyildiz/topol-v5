@@ -1,19 +1,10 @@
 import { DropResult } from '@hello-pangea/dnd';
-import { useAtom } from 'jotai';
-import { atomWithImmer } from 'jotai-immer';
 import { useCallback } from 'react';
 
-import { IRoot } from '@/types/IRoot';
-
-const nodesAtom = atomWithImmer<IRoot>({
-  rows: {},
-  columns: {},
-  items: {},
-  rowOrder: [],
-});
+import { useRootStore } from '@/hooks/useRootStore';
 
 export const useNodes = () => {
-  const [root, setRoot] = useAtom(nodesAtom);
+  const [root, setRoot] = useRootStore();
 
   const onDragStart = useCallback(() => {
     document.body.style.cursor = 'grabbing';
@@ -71,6 +62,3 @@ export const useNodes = () => {
 
   return { root, setRoot, onDragEnd, onDragStart };
 };
-
-// Export the exact type of setRoot that useAtom returns
-export type ISetRootFunction = ReturnType<typeof useNodes>['setRoot'];

@@ -20,7 +20,7 @@ export const DnD_ItemComponent = ({ id, index, item, itemRenderer }: Props) => {
           {itemRenderer(id, index, item)}
           <CustomBorderAndDragHandle
             squareSize={28}
-            borderSize={12}
+            borderSize={0}
             className="z-10 group-hover/item:flex"
             color="#25c589"
             dragHandleProps={provided.dragHandleProps}

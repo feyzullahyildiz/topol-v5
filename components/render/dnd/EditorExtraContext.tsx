@@ -1,12 +1,11 @@
 import { createContext } from 'react';
 
+import { ISetRootStoreFunction } from '@/hooks/useRootStore';
 import { IRoot } from '@/types/IRoot';
-
-import { ISetRootFunction } from './useNodes';
 
 type EditorExtraContextType = {
   root: IRoot;
-  setRoot: ISetRootFunction;
+  setRoot: ISetRootStoreFunction;
 };
 
 export const EditorExtraContext = createContext<EditorExtraContextType>(null!);
