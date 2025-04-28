@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useExtra } from '@/components/render/dnd/useExtra';
+import { useRootStore } from './useRootStore';
 
 export const useTextComponent = (id: string) => {
-  const { setRoot } = useExtra();
+  const [, setRoot] = useRootStore();
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,24 +1,22 @@
-import { DragDropContext, Droppable } from '@hello-pangea/dnd';
+'use client';
+import { Droppable } from '@hello-pangea/dnd';
 import React, { useEffect } from 'react';
 
+import { useRootStore } from '@/hooks/useRootStore';
 import { IRoot } from '@/types/IRoot';
+import { cn } from '@/util/cn';
 import { getColumnRendererDnD } from '@/util/column-renderer/getColumnRendererDnD';
 import { getItemRendererDnD } from '@/util/column-renderer/getItemRendererDnD';
 
-import { EditorExtraContext } from './dnd/EditorExtraContext';
-import { useNodes } from './dnd/useNodes';
 import { DnD_RowComponent } from './DnD_RowComponent';
 
 interface Props {
-  initialRoot: IRoot;
+  className?: string;
   children?: (nodes: IRoot) => React.ReactNode;
   onNodesChange?: (nodes: IRoot) => void;
 }
-export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
-  const { root, setRoot, onDragEnd, onDragStart } = useNodes();
-  useEffect(() => {
-    setRoot(initialRoot);
-  }, [initialRoot, setRoot]);
+export const RootEditor = ({ children, onNodesChange, className }: Props) => {
+  const [root] = useRootStore();
 
   const comps = root.rowOrder
     .map((rowId, index) => {
@@ -45,20 +43,16 @@ export const RootEditor = ({ initialRoot, children, onNodesChange }: Props) => {
   }, [root, onNodesChange]);
   return (
     <>
-      <EditorExtraContext.Provider value={{ root, setRoot }}>
-        <div className="flex w-full max-w-[800px] flex-col">
-          <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-            <Droppable droppableId="root" type="row">
-              {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  {comps}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </div>
-      </EditorExtraContext.Provider>
+      <div className={cn('flex h-full w-full max-w-[800px] flex-col', className)}>
+        <Droppable droppableId="root" type="row">
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {comps}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
       {children?.(root)}
     </>
   );
