@@ -127,10 +127,14 @@ export default function Home() {
           </div>
           <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
             <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
-              <span>Header</span>
-              <Button variant="outline" size="sm" onClick={() => setIsPreview((p) => !p)}>
-                {isPreview ? 'Preview Mode' : 'Editor Mode'}
+              <Button variant="outline" disabled size="sm">
+                Test maili gönder
               </Button>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={() => setIsPreview((p) => !p)}>
+                  {isPreview ? 'Preview Mode' : 'Editor Mode'}
+                </Button>
+              </div>
             </div>
             {isPreview ? (
               <RootPreview root={root} className="bg-foreground/10" />
