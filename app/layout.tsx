@@ -2,6 +2,9 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
+import { DarkModeChecker } from '@/components/utility/DarkModeChecker';
+import { DemodalContainer } from '@/components/utility/DemodalContainer';
+
 export const metadata: Metadata = {
   title: 'Email DnD Provider',
   description: '',
@@ -15,6 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>{children}</body>
+      <DarkModeChecker />
+      <DemodalContainer />
     </html>
   );
 }

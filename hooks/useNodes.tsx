@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useRootStore } from '@/hooks/useRootStore';
+import { IRootItems } from '@/types/IRoot';
 import { EnumRowIDs } from '@/types/node/EnumDraggableIDs';
 import { IBaseColumn } from '@/types/node/IBaseColumn';
 import { IBaseRow } from '@/types/node/IBaseRow';
@@ -77,7 +78,27 @@ export const useNodes = () => {
     [setRoot]
   );
 
-  return { root, setRoot, onDragEnd, onDragStart };
+  const addNode = useCallback(
+    (id: string, index: number, type: string) => {
+      if (type === 'text') {
+        setRoot((prev) => {
+          const item = {
+            id: uuidv4(),
+            component: 'text',
+            props: {
+              text: 'Yeni Metin',
+            },
+            type: 'item',
+          } as IRootItems;
+          prev.items[item.id] = item;
+          prev.columns[id].itemIDs.splice(index, 0, item.id);
+          prev.columns[id].itemIDs[index] = item.id;
+        });
+      }
+    },
+    [setRoot]
+  );
+  return { root, setRoot, onDragEnd, onDragStart, addNode };
 };
 
 export type IUseNodes = ReturnType<typeof useNodes>;

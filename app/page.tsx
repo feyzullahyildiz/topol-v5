@@ -85,17 +85,17 @@ export default function Home() {
     <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <div className={cn('flex h-screen flex-col p-4')}>
         <main className="flex flex-1 gap-4">
-          <div className="flex min-h-12 flex-col bg-stone-800">
-            <div className="flex min-h-12 gap-4 bg-stone-700 p-4">
-              <span className="">Layout</span>
-              <span className="">Items</span>
-              <span className="">Settings</span>
+          <div className="bg-card flex min-h-12 flex-col">
+            <div className="bg-muted text-primary flex min-h-12 gap-4 p-4">
+              <span>Layout</span>
+              <span>Items</span>
+              <span>Settings</span>
             </div>
             <LeftArea className="min-w-72 p-4" />
           </div>
-          <div className="overflohi mx-auto flex flex-1 flex-col items-center bg-stone-800">
-            <div className="flex min-h-12 w-full items-center bg-stone-700 p-4">Header</div>
-            <RootEditor className="bg-stone-600/30" />
+          <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
+            <div className="bg-muted flex min-h-12 w-full items-center p-4">Header</div>
+            <RootEditor className="bg-foreground/10" />
           </div>
         </main>
       </div>

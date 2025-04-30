@@ -1,9 +1,20 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 
 import { cn } from '@/util/cn';
 
-export const EmptyArea = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, children, ...props }, ref) => {
+import { openItemSelectModal } from '../modal/ItemSelectModal';
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  onAddItem?: (type: string) => void;
+}
+export const EmptyArea = forwardRef<HTMLDivElement, Props>(
+  ({ className, children, onAddItem, ...props }, ref) => {
+    const handleClick = useCallback(async () => {
+      const res = (await openItemSelectModal()) as string | null;
+      if (res) {
+        onAddItem?.(res);
+      }
+    }, [onAddItem]);
     return (
       <div
         ref={ref}
@@ -19,6 +30,7 @@ export const EmptyArea = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
           className
         )}
         {...props}
+        onClick={handleClick}
       >
         <div
           className={cn(
