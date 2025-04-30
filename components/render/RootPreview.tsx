@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDefault } from '@/util/column-renderer/getColumnRendererDefault';
 import { getItemRendererDefault } from '@/util/column-renderer/getItemRendererDefault';
@@ -5,8 +6,9 @@ import { getItemRendererDefault } from '@/util/column-renderer/getItemRendererDe
 import { RowComponent } from './RowComponent';
 interface NodeRendererProps {
   root: IRoot;
+  className?: string;
 }
-export const RootPreview = ({ root }: NodeRendererProps) => {
+export const RootPreview = ({ root, className }: NodeRendererProps) => {
   const comps = root.rowOrder
     .map((rowId) => {
       const row = root.rows[rowId];
@@ -24,5 +26,5 @@ export const RootPreview = ({ root }: NodeRendererProps) => {
       );
     })
     .filter(Boolean);
-  return <div className="flex w-full max-w-[800px] flex-col">{comps}</div>;
+  return <div className={cn('flex h-full w-full max-w-[800px] flex-col', className)}>{comps}</div>;
 };

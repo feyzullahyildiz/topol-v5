@@ -1,9 +1,11 @@
 'use client';
 import { DragDropContext } from '@hello-pangea/dnd';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LeftArea } from '@/components/left-area/LeftArea';
 import { RootEditor } from '@/components/render/RootEditor';
+import { RootPreview } from '@/components/render/RootPreview';
+import { Button } from '@/components/ui/button';
 import { useNodes } from '@/hooks/useNodes';
 import { useRootStore } from '@/hooks/useRootStore';
 import { IRoot } from '@/types/IRoot';
@@ -21,6 +23,11 @@ const initialRoot: IRoot = {
       type: 'row',
       columnIds: ['c3'],
     },
+    r3: {
+      id: 'r3',
+      type: 'row',
+      columnIds: ['c4', 'c5'],
+    },
   },
   columns: {
     c1: {
@@ -37,6 +44,16 @@ const initialRoot: IRoot = {
       id: 'c3',
       type: 'column',
       itemIDs: ['item-4'],
+    },
+    c4: {
+      id: 'c4',
+      type: 'column',
+      itemIDs: [],
+    },
+    c5: {
+      id: 'c5',
+      type: 'column',
+      itemIDs: ['item-5'],
     },
   },
   items: {
@@ -72,12 +89,21 @@ const initialRoot: IRoot = {
         text: 'r2 | c3 | item-4',
       },
     },
+    'item-5': {
+      id: 'item-5',
+      type: 'item',
+      component: 'text',
+      props: {
+        text: 'Yeni Metin',
+      },
+    },
   },
-  rowOrder: ['r1', 'r2'],
+  rowOrder: ['r1', 'r2', 'r3'],
 };
 export default function Home() {
+  const [isPreview, setIsPreview] = useState(false);
   const { onDragEnd, onDragStart } = useNodes();
-  const [, setRoot] = useRootStore();
+  const [root, setRoot] = useRootStore();
   useEffect(() => {
     setRoot(initialRoot);
   }, [setRoot]);
@@ -87,15 +113,30 @@ export default function Home() {
         <main className="flex flex-1 gap-4">
           <div className="bg-card flex min-h-12 flex-col">
             <div className="bg-muted text-primary flex min-h-12 gap-4 p-4">
-              <span>Layout</span>
-              <span>Items</span>
-              <span>Settings</span>
+              <Button variant="outline" size="sm">
+                Layout
+              </Button>
+              <Button disabled variant="outline" size="sm">
+                Items
+              </Button>
+              <Button disabled variant="outline" size="sm">
+                Settings
+              </Button>
             </div>
             <LeftArea className="min-w-72 p-4" />
           </div>
           <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
-            <div className="bg-muted flex min-h-12 w-full items-center p-4">Header</div>
-            <RootEditor className="bg-foreground/10" />
+            <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
+              <span>Header</span>
+              <Button variant="outline" size="sm" onClick={() => setIsPreview((p) => !p)}>
+                {isPreview ? 'Preview Mode' : 'Editor Mode'}
+              </Button>
+            </div>
+            {isPreview ? (
+              <RootPreview root={root} className="bg-foreground/10" />
+            ) : (
+              <RootEditor className="bg-foreground/10" />
+            )}
           </div>
         </main>
       </div>
