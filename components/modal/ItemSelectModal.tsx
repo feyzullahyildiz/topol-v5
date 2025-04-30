@@ -1,4 +1,5 @@
 import { Demodal, useModal } from 'demodal';
+import { useCallback } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -14,12 +15,14 @@ import {
 export const ItemSelectModal = Demodal.create(() => {
   const modal = useModal();
 
-  const onClick = (value: string | null) => {
-    modal.resolve(value);
-    modal.close();
-  };
+  const onClick = useCallback(
+    (value: string | null) => {
+      modal.resolve(value);
+      modal.close();
+    },
+    [modal]
+  );
 
-  // "title" and "message" are props sent with "modal.open()"
   return (
     <Dialog open={modal.isOpen} onOpenChange={() => onClick(null)}>
       <DialogContent className="w-auto">
