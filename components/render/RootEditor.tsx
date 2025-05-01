@@ -43,7 +43,7 @@ export const RootEditor = ({ children, onNodesChange, className }: Props) => {
   }, [root, onNodesChange]);
   return (
     <>
-      <div className={cn('flex h-full w-full max-w-[800px] flex-col', className)}>
+      <div className={cn('w-full max-w-[800px]', className)}>
         <Droppable droppableId="root" type="row">
           {(provided) => (
             <div ref={provided.innerRef} {...provided.droppableProps}>

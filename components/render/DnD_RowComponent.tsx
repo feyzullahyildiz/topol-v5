@@ -36,24 +36,29 @@ export const DnD_RowComponent = ({
           return <EmptyArea ref={provided.innerRef} {...provided.draggableProps} />;
         }
         return (
-          <div className="group/row relative" ref={provided.innerRef} {...provided.draggableProps}>
-            <RowComponent
-              id={id}
-              type={type}
-              columnIds={columnIds}
-              columnRecord={columnRecord}
-              itemRecord={itemRecord}
-              columnRenderer={columnRenderer}
-              itemRenderer={itemRenderer}
-            />
-            <CustomBorderAndDragHandle
-              squareSize={32}
-              borderSize={48}
-              className="z-0 group-hover/row:flex"
-              color="#a259ff"
-              dragHandleProps={provided.dragHandleProps}
-            />
-          </div>
+          <RowComponent
+            draggableProps={provided.draggableProps}
+            className="group/row relative"
+            ref={provided.innerRef}
+            id={id}
+            type={type}
+            columnIds={columnIds}
+            columnRecord={columnRecord}
+            itemRecord={itemRecord}
+            columnRenderer={columnRenderer}
+            itemRenderer={itemRenderer}
+          >
+            <td>
+              {/* TODO td buraya yakışmadı gibi */}
+              <CustomBorderAndDragHandle
+                squareSize={32}
+                borderSize={48}
+                className="z-0 group-hover/row:flex"
+                color="#a259ff"
+                dragHandleProps={provided.dragHandleProps}
+              />
+            </td>
+          </RowComponent>
         );
       }}
     </Draggable>

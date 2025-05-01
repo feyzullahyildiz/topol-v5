@@ -1,4 +1,5 @@
-import React from 'react';
+import { Column } from '@react-email/components';
+import React, { forwardRef } from 'react';
 
 import { IItemRenderer } from '@/types/IItemRenderer';
 import { IRootItemRecord } from '@/types/IRoot';
@@ -12,20 +13,18 @@ interface ColumnComponentProps extends IBaseColumn {
   children?: React.ReactNode;
 }
 
-export const ColumnComponent = ({
-  itemRecord,
-  itemIDs,
-  itemRenderer,
-  children,
-  className,
-}: ColumnComponentProps) => {
-  return (
-    <div className={cn('flex shrink-0 flex-col gap-4', className)}>
-      {itemIDs.map((id, index) => {
-        const item = itemRecord[id];
-        return itemRenderer(id, index, item);
-      })}
-      {children}
-    </div>
-  );
-};
+export const ColumnComponent = forwardRef<HTMLTableCellElement, ColumnComponentProps>(
+  ({ itemRecord, itemIDs, itemRenderer, children, className }, ref) => {
+    return (
+      <Column ref={ref} className={cn('', className)}>
+        {itemIDs.map((id, index) => {
+          const item = itemRecord[id];
+          return itemRenderer(id, index, item);
+        })}
+        {children}
+      </Column>
+    );
+  }
+);
+
+ColumnComponent.displayName = 'ColumnComponent';

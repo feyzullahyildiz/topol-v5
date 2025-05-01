@@ -1,3 +1,5 @@
+import { Section } from '@react-email/components';
+
 import { cn } from '@/lib/utils';
 import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDefault } from '@/util/column-renderer/getColumnRendererDefault';
@@ -26,5 +28,5 @@ export const RootPreview = ({ root, className }: NodeRendererProps) => {
       );
     })
     .filter(Boolean);
-  return <div className={cn('flex h-full w-full max-w-[800px] flex-col', className)}>{comps}</div>;
+  return <Section className={cn('w-full max-w-[800px]', className)}>{comps}</Section>;
 };

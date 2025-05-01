@@ -9,6 +9,11 @@ interface Props extends IItemTextComponentProps {
 export const DnD_ItemTextComponent = ({ id, text }: Props) => {
   const { onChange } = useTextComponent(id);
   return (
-    <input type="text" className="w-full flex-1 p-4 break-all" value={text} onChange={onChange} />
+    <input
+      type="text"
+      className="box-content min-h-6 w-fit p-4 text-sm break-all"
+      value={text}
+      onChange={onChange}
+    />
   );
 };

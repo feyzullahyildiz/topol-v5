@@ -34,18 +34,18 @@ export const DnD_ColumnComponent = ({ id, itemRecord, itemIDs, itemRenderer, ...
           );
         }
         return (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <ColumnComponent
-              id={id}
-              itemRecord={itemRecord}
-              itemIDs={itemIDs}
-              itemRenderer={itemRenderer}
-              className={cn(snapshot.isDraggingOver && 'bg-blue-300/20')}
-              {...props}
-            >
-              {provided.placeholder}
-            </ColumnComponent>
-          </div>
+          <ColumnComponent
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            id={id}
+            itemRecord={itemRecord}
+            itemIDs={itemIDs}
+            itemRenderer={itemRenderer}
+            className={cn(snapshot.isDraggingOver && 'bg-blue-300/20')}
+            {...props}
+          >
+            {provided.placeholder}
+          </ColumnComponent>
         );
       }}
     </Droppable>

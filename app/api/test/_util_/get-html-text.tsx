@@ -1,4 +1,4 @@
-import { Html,render, Tailwind } from '@react-email/components';
+import { Html, render, Tailwind } from '@react-email/components';
 
 import { BaseTailwindConfig } from '@/base.tailwind.config';
 import { RootPreview } from '@/components/render/RootPreview';
