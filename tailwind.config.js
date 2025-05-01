@@ -1,3 +1,5 @@
+import { BaseTailwindConfig } from './base.tailwind.config';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -6,8 +8,5 @@ export default {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './stories/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
+  ...BaseTailwindConfig,
 };

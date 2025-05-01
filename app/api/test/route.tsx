@@ -1,11 +1,9 @@
-import { render } from '@react-email/components';
-
-import { RootPreview } from '@/components/render/RootPreview';
+import { getHtmlText } from './_util_/get-html-text';
 
 export const POST = async (req: Request) => {
   const body = await req.json();
 
-  const str = await render(<RootPreview root={body} />, { pretty: true });
+  const str = await getHtmlText(body);
   return new Response(str, {
     headers: {
       'Access-Control-Allow-Origin': '*',

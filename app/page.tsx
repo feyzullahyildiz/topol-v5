@@ -107,6 +107,17 @@ export default function Home() {
   useEffect(() => {
     setRoot(initialRoot);
   }, [setRoot]);
+
+  const sendMail = async () => {
+    const to = prompt('Mail adresini giriniz');
+    if (!to) return;
+
+    const response = await fetch('/api/test/send-mail', {
+      method: 'POST',
+      body: JSON.stringify({ to, subject: 'Test mail', data: root }),
+    }).then((res) => res.json());
+    console.log(response);
+  };
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <div className={cn('flex h-screen flex-col p-4')}>
@@ -127,7 +138,7 @@ export default function Home() {
           </div>
           <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
             <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
-              <Button variant="outline" disabled size="sm">
+              <Button variant="outline" onClick={sendMail} size="sm">
                 Test maili gönder
               </Button>
               <div className="flex gap-2">
