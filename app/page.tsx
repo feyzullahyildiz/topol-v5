@@ -60,9 +60,9 @@ const initialRoot: IRoot = {
     'item-1': {
       id: 'item-1',
       type: 'item',
-      component: 'text',
+      component: 'image',
       props: {
-        text: 'r1 | c1 | item-1',
+        src: 'https://picsum.photos/id/15/400/300',
       },
     },
     'item-2': {

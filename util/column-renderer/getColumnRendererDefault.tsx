@@ -1,4 +1,4 @@
-import { ColumnComponent } from '@/components/render/ColumnComponent';
+import { ColumnComponent } from '@/components/default/ColumnComponent';
 import { IColumnRenderer } from '@/types/IColumnRenderer';
 
 export const getColumnRendererDefault: IColumnRenderer = (

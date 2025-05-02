@@ -5,7 +5,7 @@ import { IRoot } from '@/types/IRoot';
 import { getColumnRendererDefault } from '@/util/column-renderer/getColumnRendererDefault';
 import { getItemRendererDefault } from '@/util/column-renderer/getItemRendererDefault';
 
-import { RowComponent } from './RowComponent';
+import { RowComponent } from '../default/RowComponent';
 interface NodeRendererProps {
   root: IRoot;
   className?: string;

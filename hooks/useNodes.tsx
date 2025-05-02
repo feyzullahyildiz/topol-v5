@@ -95,6 +95,21 @@ export const useNodes = () => {
           prev.columns[id].itemIDs[index] = item.id;
         });
       }
+      if (type === 'image') {
+        setRoot((prev) => {
+          const item = {
+            id: uuidv4(),
+            component: 'image',
+            props: {
+              src: 'https://picsum.photos/id/237/400/300',
+            },
+            type: 'item',
+          } as IRootItems;
+          prev.items[item.id] = item;
+          prev.columns[id].itemIDs.splice(index, 0, item.id);
+          prev.columns[id].itemIDs[index] = item.id;
+        });
+      }
     },
     [setRoot]
   );

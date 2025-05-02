@@ -32,7 +32,7 @@ export const RowComponent = React.forwardRef<HTMLTableElement, Props>(
     ref
   ) => {
     return (
-      <Row className={cn('', className)} ref={ref} {...draggableProps}>
+      <Row className={cn('w-full table-fixed', className)} ref={ref} {...draggableProps}>
         {columnIds.map((cid, index) => {
           const column = columnRecord[cid];
           return columnRenderer(column.id, index, column, itemRecord, itemRenderer);

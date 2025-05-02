@@ -34,7 +34,9 @@ export const ItemSelectModal = Demodal.create(() => {
           <Item onClick={onClick} id="text">
             Metin
           </Item>
-          <Item disabled>Resim</Item>
+          <Item id="image" onClick={onClick}>
+            Resim
+          </Item>
           <Item disabled>GIF</Item>
           <Item disabled>Buton</Item>
           <Item disabled>Ayraç</Item>

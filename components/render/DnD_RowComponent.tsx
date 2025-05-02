@@ -6,8 +6,8 @@ import { IItemRenderer } from '@/types/IItemRenderer';
 import { IRootColumnRecord, IRootItemRecord } from '@/types/IRoot';
 import { IBaseRow } from '@/types/node/IBaseRow';
 
+import { RowComponent } from '../default/RowComponent';
 import { EmptyArea } from '../utility/EmptyAreaDefault';
-import { RowComponent } from './RowComponent';
 import { CustomBorderAndDragHandle } from './util/CustomBorderAndDragHandle';
 
 interface Props extends IBaseRow {
@@ -48,7 +48,9 @@ export const DnD_RowComponent = ({
             columnRenderer={columnRenderer}
             itemRenderer={itemRenderer}
           >
-            <td>
+            {/* Burası extra bir row daha ekliyordu. O yüzden 0 size verdim. */}
+            {/* relative olmadığı için absolute güzel çalışıyor. */}
+            <td className="static size-0">
               {/* TODO td buraya yakışmadı gibi */}
               <CustomBorderAndDragHandle
                 squareSize={32}

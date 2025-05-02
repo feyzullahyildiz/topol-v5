@@ -1,7 +1,7 @@
 import { Droppable } from '@hello-pangea/dnd';
 import React, { useCallback } from 'react';
 
-import { ColumnComponent } from '@/components/render/ColumnComponent';
+import { ColumnComponent } from '@/components/default/ColumnComponent';
 import { useNodes } from '@/hooks/useNodes';
 import { IItemRenderer } from '@/types/IItemRenderer';
 import { IRootItemRecord } from '@/types/IRoot';

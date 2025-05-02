@@ -1,8 +1,9 @@
 import { IBaseColumn } from './node/IBaseColumn';
 import { IBaseRow } from './node/IBaseRow';
+import { IItemImage } from './node/IItemImage';
 import { IItemText } from './node/IItemText';
 
-export type IRootItems = IItemText;
+export type IRootItems = IItemText | IItemImage;
 
 export type IRootRowRecord = Record<string, IBaseRow>;
 export type IRootColumnRecord = Record<string, IBaseColumn>;
