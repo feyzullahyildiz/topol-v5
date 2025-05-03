@@ -19,7 +19,12 @@ const initialRoot: IRoot = {
     r1: {
       id: 'r1',
       type: 'row',
-      columnIds: ['c1', 'c2'],
+      columnIds: ['c1'],
+    },
+    r1_2: {
+      id: 'r1_2',
+      type: 'row',
+      columnIds: ['c2'],
     },
     r2: {
       id: 'r2',
@@ -30,6 +35,16 @@ const initialRoot: IRoot = {
       id: 'r3',
       type: 'row',
       columnIds: ['c4', 'c5'],
+    },
+    r_bottom: {
+      id: 'r_bottom',
+      type: 'row',
+      columnIds: ['c_bottom_1', 'c_bottom_2'],
+    },
+    r_footer: {
+      id: 'r_footer',
+      type: 'row',
+      columnIds: ['c_footer_1'],
     },
   },
   columns: {
@@ -58,6 +73,21 @@ const initialRoot: IRoot = {
       type: 'column',
       itemIDs: ['item-5'],
     },
+    c_bottom_1: {
+      id: 'c_bottom_1',
+      type: 'column',
+      itemIDs: ['bottom_img_1'],
+    },
+    c_bottom_2: {
+      id: 'c_bottom_2',
+      type: 'column',
+      itemIDs: ['bottom_img_2'],
+    },
+    c_footer_1: {
+      id: 'c_footer_1',
+      type: 'column',
+      itemIDs: ['item_footer_1'],
+    },
   },
   items: {
     'item-1': {
@@ -65,7 +95,7 @@ const initialRoot: IRoot = {
       type: 'item',
       component: 'image',
       props: {
-        src: 'https://picsum.photos/id/15/400/300',
+        src: 'https://picsum.photos/id/15/800/300',
       },
     },
     'item-2': {
@@ -73,7 +103,7 @@ const initialRoot: IRoot = {
       type: 'item',
       component: 'text',
       props: {
-        text: 'r1 | c1 | item-2',
+        text: 'Email DnD Provider - Sample Title',
       },
     },
     'item-3': {
@@ -81,7 +111,7 @@ const initialRoot: IRoot = {
       type: 'item',
       component: 'text',
       props: {
-        text: 'r1 | c2 | item-3',
+        text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
       },
     },
     'item-4': {
@@ -89,7 +119,7 @@ const initialRoot: IRoot = {
       type: 'item',
       component: 'text',
       props: {
-        text: 'r2 | c3 | item-4',
+        text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis ',
       },
     },
     'item-5': {
@@ -100,8 +130,32 @@ const initialRoot: IRoot = {
         text: 'Yeni Metin',
       },
     },
+    item_footer_1: {
+      id: 'item_footer_1',
+      type: 'item',
+      component: 'text',
+      props: {
+        text: 'Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repella',
+      },
+    },
+    bottom_img_1: {
+      id: 'bottom_img_1',
+      type: 'item',
+      component: 'image',
+      props: {
+        src: 'https://picsum.photos/id/16/400/300',
+      },
+    },
+    bottom_img_2: {
+      id: 'bottom_img_2',
+      type: 'item',
+      component: 'image',
+      props: {
+        src: 'https://picsum.photos/id/17/400/300',
+      },
+    },
   },
-  rowOrder: ['r1', 'r2', 'r3'],
+  rowOrder: ['r1', 'r1_2', 'r2', 'r3', 'r_bottom', 'r_footer'],
 };
 export default function Home() {
   const [layoutMenu, setLayoutMenu] = useLayoutMenu();
@@ -135,7 +189,7 @@ export default function Home() {
                 selectedId: null,
               });
             }}
-            className="bg-card flex min-h-12 min-w-[300px] flex-col"
+            className="bg-card flex min-h-12 w-[300px] flex-col"
           >
             <div className="bg-muted text-primary flex min-h-12 gap-4 p-4">
               <TabsList>

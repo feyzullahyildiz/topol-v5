@@ -24,8 +24,8 @@ export const LeftArea = ({ className }: Props) => {
       </TabsContent>
       <TabsContent value="items">
         <LeftAreaItemsDroppable className={cn(className, 'flex flex-col gap-4 p-4')}>
-          <span>TEXT</span>
-          <span>IMAGE</span>
+          <span className="cursor-not-allowed opacity-50">TEXT</span>
+          <span className="cursor-not-allowed opacity-50">IMAGE</span>
         </LeftAreaItemsDroppable>
       </TabsContent>
       <TabsContent value={null!}>

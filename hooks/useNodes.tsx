@@ -101,7 +101,7 @@ export const useNodes = () => {
             id: uuidv4(),
             component: 'image',
             props: {
-              src: 'https://picsum.photos/id/237/400/300',
+              src: 'https://picsum.photos/id/17/400/300',
             },
             type: 'item',
           } as IRootItems;
