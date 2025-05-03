@@ -2,7 +2,7 @@
 import { Droppable } from '@hello-pangea/dnd';
 import React, { useEffect } from 'react';
 
-import { useRootStore } from '@/hooks/useRootStore';
+import { useRootStore } from '@/hooks/global-state/useRootStore';
 import { IRoot } from '@/types/IRoot';
 import { cn } from '@/util/cn';
 import { getColumnRendererDnD } from '@/util/column-renderer/getColumnRendererDnD';

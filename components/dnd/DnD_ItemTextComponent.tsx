@@ -13,7 +13,7 @@ export const DnD_ItemTextComponent = ({ id, text }: Props) => {
       type="text"
       className="box-content min-h-6 w-fit p-4 text-sm break-all"
       value={text}
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 };

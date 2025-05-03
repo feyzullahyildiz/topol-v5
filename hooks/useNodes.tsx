@@ -2,7 +2,7 @@ import { DropResult } from '@hello-pangea/dnd';
 import { useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { useRootStore } from '@/hooks/useRootStore';
+import { useRootStore } from '@/hooks/global-state/useRootStore';
 import { IRootItems } from '@/types/IRoot';
 import { EnumRowIDs } from '@/types/node/EnumDraggableIDs';
 import { IBaseColumn } from '@/types/node/IBaseColumn';

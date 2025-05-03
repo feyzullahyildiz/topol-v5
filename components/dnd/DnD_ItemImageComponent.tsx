@@ -30,7 +30,6 @@ const DnD_ItemImageComponentNormal = ({ src }: Props) => {
         setSrcInBase64(cacheMap.get(src) as string);
         return;
       }
-      console.log('FECHING');
       const response = await fetch(src);
       const blob = await response.blob();
       const base64 = await blobToBase64(blob);

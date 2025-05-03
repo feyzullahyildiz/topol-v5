@@ -20,6 +20,7 @@
     "@prezly/react-promise-modal": "^2.0.0",
     "@radix-ui/react-dialog": "^1.1.11",
     "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-tabs": "^1.1.9",
     "@react-email/components": "^0.0.36",
     "@react-email/tailwind": "^1.0.4",
     "class-variance-authority": "^0.7.1",

@@ -6,8 +6,11 @@ import { LeftArea } from '@/components/left-area/LeftArea';
 import { RootEditor } from '@/components/render/RootEditor';
 import { RootPreview } from '@/components/render/RootPreview';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ILayoutMenuState } from '@/hooks/global-state/AtomLayout';
+import { useLayoutMenu } from '@/hooks/global-state/useLayoutState';
+import { useRootStore } from '@/hooks/global-state/useRootStore';
 import { useNodes } from '@/hooks/useNodes';
-import { useRootStore } from '@/hooks/useRootStore';
 import { IRoot } from '@/types/IRoot';
 import { cn } from '@/util/cn';
 
@@ -101,6 +104,8 @@ const initialRoot: IRoot = {
   rowOrder: ['r1', 'r2', 'r3'],
 };
 export default function Home() {
+  const [layoutMenu, setLayoutMenu] = useLayoutMenu();
+
   const [isPreview, setIsPreview] = useState(false);
   const { onDragEnd, onDragStart } = useNodes();
   const [root, setRoot] = useRootStore();
@@ -122,20 +127,27 @@ export default function Home() {
     <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
       <div className={cn('flex h-screen flex-col p-4')}>
         <main className="flex flex-1 gap-4">
-          <div className="bg-card flex min-h-12 flex-col">
+          <Tabs
+            value={layoutMenu.menu!}
+            onValueChange={(value) => {
+              setLayoutMenu({
+                menu: value as ILayoutMenuState,
+                selectedId: null,
+              });
+            }}
+            className="bg-card flex min-h-12 min-w-[300px] flex-col"
+          >
             <div className="bg-muted text-primary flex min-h-12 gap-4 p-4">
-              <Button variant="outline" size="sm">
-                Layout
-              </Button>
-              <Button disabled variant="outline" size="sm">
-                Items
-              </Button>
-              <Button disabled variant="outline" size="sm">
-                Settings
-              </Button>
+              <TabsList>
+                <TabsTrigger value="layout">Layout</TabsTrigger>
+                <TabsTrigger value="items">Items</TabsTrigger>
+                <TabsTrigger disabled value="settings">
+                  Settings
+                </TabsTrigger>
+              </TabsList>
             </div>
-            <LeftArea className="min-w-72 p-4" />
-          </div>
+            <LeftArea className="p-4" />
+          </Tabs>
           <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
             <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
               <Button variant="outline" onClick={sendMail} size="sm">
