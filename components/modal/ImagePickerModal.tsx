@@ -23,7 +23,7 @@ export const ImagePickerModal = Demodal.create(() => {
     <Dialog open={modal.isOpen} onOpenChange={() => onClick(null)}>
       <DialogContent className="max-w-auto">
         <DialogHeader>
-          <DialogTitle>Yeni içerik türü ekle</DialogTitle>
+          <DialogTitle>Add new content type</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <div className="max-h-[40vh] overflow-auto">

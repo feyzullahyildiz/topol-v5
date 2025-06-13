@@ -27,24 +27,24 @@ export const ItemSelectModal = Demodal.create(() => {
     <Dialog open={modal.isOpen} onOpenChange={() => onClick(null)}>
       <DialogContent className="w-auto">
         <DialogHeader>
-          <DialogTitle>Yeni içerik türü ekle</DialogTitle>
+          <DialogTitle>Add new content type</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-3 gap-2">
           <Item onClick={onClick} id="text">
-            Metin
+            Text
           </Item>
           <Item id="image" onClick={onClick}>
-            Resim
+            Image
           </Item>
           <Item disabled>GIF</Item>
-          <Item disabled>Buton</Item>
-          <Item disabled>Ayraç</Item>
-          <Item disabled>Boşluk</Item>
-          <Item disabled>Sosyal</Item>
+          <Item disabled>Button</Item>
+          <Item disabled>Divider</Item>
+          <Item disabled>Spacing</Item>
+          <Item disabled>Social</Item>
           <Item disabled>Video</Item>
           <Item disabled>HTML</Item>
-          <Item disabled>Ürün</Item>
+          <Item disabled>Product</Item>
         </div>
         <DialogFooter></DialogFooter>
       </DialogContent>

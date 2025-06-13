@@ -86,7 +86,7 @@ export const useNodes = () => {
             id: uuidv4(),
             component: 'text',
             props: {
-              text: 'Yeni Metin',
+              text: 'New Text',
             },
             type: 'item',
           } as IRootItems;

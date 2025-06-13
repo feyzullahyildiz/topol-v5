@@ -41,7 +41,7 @@ export const RootTestEditor = ({ initialRoot }: Props) => {
       </DragDropContext>
 
       <hr />
-      <h2 className="text-2xl font-bold">SONUÇ</h2>
+      <h2 className="text-2xl font-bold">Result</h2>
       <pre className="break-all whitespace-pre-wrap">{result}</pre>
     </div>
   );

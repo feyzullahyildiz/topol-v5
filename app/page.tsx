@@ -127,7 +127,7 @@ const initialRoot: IRoot = {
       type: 'item',
       component: 'text',
       props: {
-        text: 'Yeni Metin',
+        text: 'New Text',
       },
     },
     item_footer_1: {
@@ -205,7 +205,7 @@ export default function Home() {
           <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
             <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
               <Button variant="outline" onClick={sendMail} size="sm">
-                Test maili gönder
+                Send test mail
               </Button>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => setIsPreview((p) => !p)}>

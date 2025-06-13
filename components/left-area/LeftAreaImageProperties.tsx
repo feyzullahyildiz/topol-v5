@@ -21,7 +21,7 @@ export const LeftAreaImageProperties = ({ id, payload }: Props) => {
     <div className="flex flex-col gap-4 p-4">
       <h2 className="text-lg font-bold">Image</h2>
       <div>{payload.props.src}</div>
-      <Button onClick={onClick}>Resim Seç</Button>
+      <Button onClick={onClick}>Select Image</Button>
     </div>
   );
 };

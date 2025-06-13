@@ -4,7 +4,7 @@
   "plugins": ["@typescript-eslint", "simple-import-sort"],
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "rules": {
-    // Özelleştirilmiş kurallar (gerekliyse) buraya eklenebilir
+    // Custom rules (if needed) can be added here
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error"
   }
