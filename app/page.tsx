@@ -191,7 +191,7 @@ export default function Home() {
             }}
             className="bg-card flex min-h-12 w-[300px] flex-col"
           >
-            <div className="bg-muted text-primary flex min-h-12 gap-4 p-4">
+            <div className="bg-muted text-primary flex min-h-18 gap-4 p-4">
               <TabsList>
                 <TabsTrigger value="layout">Layout</TabsTrigger>
                 <TabsTrigger value="items">Items</TabsTrigger>
@@ -202,8 +202,8 @@ export default function Home() {
             </div>
             <LeftArea className="p-4" />
           </Tabs>
-          <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center">
-            <div className="bg-muted flex min-h-12 w-full items-center justify-between p-4">
+          <div className="bg-card text-primary mx-auto flex flex-1 flex-col items-center gap-2">
+            <div className="bg-muted flex min-h-18 w-full items-center justify-between p-4">
               <Button variant="outline" onClick={sendMail} size="sm">
                 Send test mail
               </Button>
@@ -213,11 +213,13 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            {isPreview ? (
-              <RootPreview root={root} className="bg-foreground/10" />
-            ) : (
-              <RootEditor className="bg-foreground/10" />
-            )}
+            <div className="bg-accent flex w-full flex-1 justify-center py-4">
+              {isPreview ? (
+                <RootPreview root={root} className="bg-white" />
+              ) : (
+                <RootEditor className="bg-white" />
+              )}
+            </div>
           </div>
         </main>
       </div>

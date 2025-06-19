@@ -15,20 +15,20 @@ interface Props {
 export const LeftArea = ({ className }: Props) => {
   return (
     <>
-      <TabsContent value="layout">
+      <TabsContent value="layout" className="bg-accent">
         <LeftAreaRowDroppable className={cn(className, 'flex flex-col gap-4 p-4')}>
           <Row_1_Column_Component />
           <Row_2_Column_Component />
           <Row_3_Column_Component />
         </LeftAreaRowDroppable>
       </TabsContent>
-      <TabsContent value="items">
+      <TabsContent value="items" className="bg-accent">
         <LeftAreaItemsDroppable className={cn(className, 'flex flex-col gap-4 p-4')}>
           <span className="cursor-not-allowed opacity-50">TEXT</span>
           <span className="cursor-not-allowed opacity-50">IMAGE</span>
         </LeftAreaItemsDroppable>
       </TabsContent>
-      <TabsContent value={null!}>
+      <TabsContent value={null!} className="bg-accent">
         <LeftAreaItemProperties />
       </TabsContent>
     </>
