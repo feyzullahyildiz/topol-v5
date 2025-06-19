@@ -9,7 +9,7 @@ export const creatBaseRow = (id: EnumRowIDs, index: number, children: React.Reac
       {(provided) => {
         return (
           <div
-            className="rounded-md border-1 border-gray-300 p-4"
+            className="border-1 border-gray-200 p-2"
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
