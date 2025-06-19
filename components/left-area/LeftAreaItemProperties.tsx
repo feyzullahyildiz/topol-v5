@@ -11,6 +11,9 @@ export const LeftAreaItemProperties = () => {
   const [layoutMenu] = useLayoutMenu();
   const selectedId = layoutMenu.selectedId!;
   const selectedItem = root.items[selectedId]!;
+  if (!selectedItem) {
+    return null;
+  }
   if (selectedItem.component === 'image') {
     return <LeftAreaImageProperties id={selectedId} payload={selectedItem} />;
   }
