@@ -2,13 +2,11 @@ import { Resend } from 'resend';
 
 import { getHtmlText } from '../_util_/get-html-text';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export const POST = async (req: Request) => {
-  const { to, subject, data } = await req.json();
+  const { to, subject, data, apiKey } = await req.json();
 
   const html = await getHtmlText(data);
-
+  const resend = new Resend(apiKey || process.env.RESEND_API_KEY);
   const response = await resend.emails.send({
     from: 'onboarding@resend.dev',
     to,

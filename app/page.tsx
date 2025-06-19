@@ -3,6 +3,7 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { useEffect, useState } from 'react';
 
 import { LeftArea } from '@/components/left-area/LeftArea';
+import { openSendMailModal } from '@/components/modal/SendMailModal';
 import { RootEditor } from '@/components/render/RootEditor';
 import { RootPreview } from '@/components/render/RootPreview';
 import { Button } from '@/components/ui/button';
@@ -168,14 +169,7 @@ export default function Home() {
   }, [setRoot]);
 
   const sendMail = async () => {
-    const to = prompt('Mail adresini giriniz');
-    if (!to) return;
-
-    const response = await fetch('/api/test/send-mail', {
-      method: 'POST',
-      body: JSON.stringify({ to, subject: 'Test mail', data: root }),
-    }).then((res) => res.json());
-    console.log(response);
+    openSendMailModal(root);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>

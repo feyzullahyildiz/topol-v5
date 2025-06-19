@@ -1,3 +1,4 @@
+'use server';
 import { Html, render, Tailwind } from '@react-email/components';
 
 import { BaseTailwindConfig } from '@/base.tailwind.config';
@@ -14,7 +15,7 @@ function RootPreviewProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export async function getHtmlText(root: IRoot) {
+export async function getHtmlText(root: IRoot): Promise<string> {
   const str = await render(
     <RootPreviewProvider>
       <RootPreview root={root} />

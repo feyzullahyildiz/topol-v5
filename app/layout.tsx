@@ -2,6 +2,7 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 
+import { Toaster } from '@/components/ui/sonner';
 import { DarkModeChecker } from '@/components/utility/DarkModeChecker';
 import { DemodalContainer } from '@/components/utility/DemodalContainer';
 
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>{children}</body>
+      <body className={`antialiased`}>
+        {children}
+        <Toaster />
+      </body>
       <DarkModeChecker />
       <DemodalContainer />
     </html>
